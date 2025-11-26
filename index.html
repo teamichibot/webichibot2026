@@ -1,0 +1,5131 @@
+<!doctype html>
+<html lang="id">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ICHIBOT - AI × IoT Learning Platform</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #1a1a2e;
+      background: #ffffff;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Dark Mode Variables */
+    body.dark-mode {
+      background: #0f0f1e;
+      color: #e8e8f0;
+    }
+
+    body.dark-mode .header {
+      background: #1a1a2e !important;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    body.dark-mode .nav-menu a {
+      color: #b8b8c8 !important;
+    }
+
+    body.dark-mode .nav-menu a:hover {
+      color: #6366f1 !important;
+    }
+
+    body.dark-mode .dropdown-menu {
+      background: #1a1a2e;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    body.dark-mode .dropdown-menu a {
+      color: #b8b8c8;
+    }
+
+    body.dark-mode .dropdown-menu a:hover {
+      background: linear-gradient(90deg, rgba(99, 102, 241, 0.15), transparent);
+      color: #6366f1;
+    }
+
+    body.dark-mode .btn-secondary {
+      color: #b8b8c8;
+      border-color: #4a4a5e;
+    }
+
+    body.dark-mode .btn-secondary:hover {
+      border-color: #6366f1;
+      color: #6366f1;
+    }
+
+    body.dark-mode .hero {
+      background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1e 100%) !important;
+    }
+
+    body.dark-mode .hero-headline {
+      color: #ffffff !important;
+    }
+
+    body.dark-mode .hero-subheadline {
+      color: #b8b8c8 !important;
+    }
+
+    body.dark-mode .btn-hero-secondary {
+      color: #b8b8c8;
+      border-color: #4a4a5e;
+    }
+
+    body.dark-mode .btn-hero-secondary:hover {
+      border-color: #6366f1;
+      color: #6366f1;
+      background: rgba(99, 102, 241, 0.08);
+    }
+
+    body.dark-mode .dashboard-card {
+      background: #1a1a2e;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    body.dark-mode .dashboard-title {
+      color: #ffffff;
+    }
+
+    body.dark-mode .float-card {
+      background: #1a1a2e;
+      border: 1px solid rgba(99, 102, 241, 0.25);
+    }
+
+    body.dark-mode .node-label {
+      color: #ffffff;
+    }
+
+    body.dark-mode .node-sublabel {
+      color: #8888a0;
+    }
+
+    body.dark-mode .capabilities-section {
+      background: #0f0f1e;
+    }
+
+    body.dark-mode .capabilities-headline,
+    body.dark-mode .capability-title {
+      color: #ffffff;
+    }
+
+    body.dark-mode .capabilities-subheadline,
+    body.dark-mode .capability-description {
+      color: #b8b8c8;
+    }
+
+    body.dark-mode .capability-card {
+      background: #1a1a2e;
+      border: 1.5px solid #2a2a3e;
+    }
+
+    body.dark-mode .capability-card:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+    }
+
+    body.dark-mode .capability-icon {
+      background: linear-gradient(135deg, #1a1a2e, #0f0f1e);
+      border: 2px solid #2a2a3e;
+    }
+
+    body.dark-mode .capability-card:hover .capability-icon {
+      border-color: rgba(99, 102, 241, 0.4);
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(0, 102, 255, 0.1));
+    }
+
+    body.dark-mode .kits-section {
+      background: linear-gradient(180deg, #0f0f1e 0%, #1a1a2e 100%);
+    }
+
+    body.dark-mode .kits-headline,
+    body.dark-mode .kit-title {
+      color: #ffffff;
+    }
+
+    body.dark-mode .kits-subheadline,
+    body.dark-mode .kit-description {
+      color: #b8b8c8;
+    }
+
+    body.dark-mode .kit-card {
+      background: #1a1a2e;
+      border: 1.5px solid #2a2a3e;
+    }
+
+    body.dark-mode .kit-card:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+    }
+
+    body.dark-mode .kit-features li {
+      color: #b8b8c8;
+    }
+
+    body.dark-mode .lab-package-banner {
+      background: linear-gradient(135deg, #1a1a2e, #0f0f1e);
+      border: 2px solid rgba(99, 102, 241, 0.3);
+    }
+
+    body.dark-mode .lab-package-title {
+      color: #ffffff;
+    }
+
+    body.dark-mode .lab-package-description {
+      color: #b8b8c8;
+    }
+
+    body.dark-mode .lab-package-features li {
+      color: #b8b8c8;
+    }
+
+    body.dark-mode .mini-courses-section {
+      background: linear-gradient(180deg, #0f0f1e 0%, #1a1a2e 100%);
+    }
+
+    body.dark-mode .mini-courses-headline {
+      color: #ffffff;
+    }
+
+    body.dark-mode .mini-courses-subheadline {
+      color: #b8b8c8;
+    }
+
+    body.dark-mode .course-card {
+      background: #1a1a2e;
+      border: 1.5px solid #2a2a3e;
+    }
+
+    body.dark-mode .course-card:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+    }
+
+    body.dark-mode .course-title {
+      color: #ffffff;
+    }
+
+    body.dark-mode .course-subtitle {
+      color: #b8b8c8;
+    }
+
+    body.dark-mode .carousel-btn {
+      background: #1a1a2e;
+      border: 1.5px solid #2a2a3e;
+      color: #b8b8c8;
+    }
+
+    body.dark-mode .carousel-btn:hover {
+      background: linear-gradient(135deg, #0066ff, #6366f1);
+      color: #ffffff;
+      border-color: transparent;
+    }
+
+    body.dark-mode .programs-section {
+      background: #0f0f1e;
+    }
+
+    body.dark-mode .programs-headline {
+      color: #ffffff;
+    }
+
+    body.dark-mode .programs-subheadline {
+      color: #b8b8c8;
+    }
+
+    body.dark-mode .program-banner {
+      background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+      border: 1.5px solid #2a2a3e;
+    }
+
+    body.dark-mode .program-banner:hover {
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    body.dark-mode .program-title {
+      color: #ffffff;
+    }
+
+    body.dark-mode .program-description {
+      color: #b8b8c8;
+    }
+
+    body.dark-mode .trusted-section {
+      background: linear-gradient(180deg, #0f0f1e 0%, #1a1a2e 100%);
+    }
+
+    body.dark-mode .trusted-headline {
+      color: #ffffff;
+    }
+
+    body.dark-mode .trusted-subheadline {
+      color: #b8b8c8;
+    }
+
+    body.dark-mode .logo-box {
+      background: #1a1a2e;
+      border: 1.5px solid #2a2a3e;
+    }
+
+    body.dark-mode .logo-box:hover {
+      border-color: rgba(99, 102, 241, 0.35);
+    }
+
+    body.dark-mode .testimonials-section {
+      background: linear-gradient(180deg, #0f0f1e 0%, #1a1a2e 100%);
+    }
+
+    body.dark-mode .testimonials-headline {
+      color: #ffffff;
+    }
+
+    body.dark-mode .testimonials-subheadline {
+      color: #b8b8c8;
+    }
+
+    body.dark-mode .testimonial-card {
+      background: #1a1a2e;
+      border: 1.5px solid #2a2a3e;
+    }
+
+    body.dark-mode .testimonial-card:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+    }
+
+    body.dark-mode .testimonial-text {
+      color: #b8b8c8;
+    }
+
+    body.dark-mode .testimonial-name {
+      color: #ffffff;
+    }
+
+    body.dark-mode .mobile-nav-menu {
+      background: #1a1a2e;
+    }
+
+    body.dark-mode .mobile-nav-link {
+      color: #b8b8c8;
+    }
+
+    body.dark-mode .mobile-nav-link:hover {
+      background: rgba(99, 102, 241, 0.1);
+      color: #6366f1;
+    }
+
+    body.dark-mode .mobile-nav-item {
+      border-bottom: 1px solid #2a2a3e;
+    }
+
+    body.dark-mode .mobile-submenu {
+      background: #0f0f1e;
+    }
+
+    body.dark-mode .mobile-submenu a {
+      color: #b8b8c8;
+    }
+
+    body.dark-mode .mobile-submenu a:hover {
+      background: rgba(99, 102, 241, 0.15);
+      color: #6366f1;
+    }
+
+    body.dark-mode .mobile-ecosystem {
+      border-bottom: 1px solid #2a2a3e;
+    }
+
+    body.dark-mode .mobile-ecosystem-links a {
+      color: #b8b8c8;
+    }
+
+    body.dark-mode .mobile-ecosystem-links a:hover {
+      color: #6366f1;
+    }
+
+    body.dark-mode .ecosystem-links a {
+      color: #b8b8c8;
+    }
+
+    body.dark-mode .ecosystem-links a:hover {
+      color: #6366f1;
+    }
+
+    body.dark-mode .ecosystem-label,
+    body.dark-mode .mobile-ecosystem-label {
+      color: #8888a0;
+    }
+
+    body.dark-mode .ecosystem-section {
+      border-left: 1px solid #2a2a3e;
+    }
+
+    body.dark-mode .course-card-cta {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(0, 102, 255, 0.15));
+      border: 2px dashed rgba(99, 102, 241, 0.4);
+    }
+
+    body.dark-mode .course-card-cta:hover {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(0, 102, 255, 0.2));
+      border-color: rgba(99, 102, 241, 0.6);
+    }
+
+    body.dark-mode .cta-title {
+      color: #ffffff;
+    }
+
+    body.dark-mode .cta-subtitle {
+      color: #b8b8c8;
+    }
+
+    body.dark-mode .kit-icon-wrapper {
+      background: #0f0f1e;
+    }
+
+    /* Header Styles */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      z-index: 1000;
+      padding: 0 5%;
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 75px;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 56px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #0066ff, #6366f1);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    body.dark-mode .logo {
+      background: linear-gradient(135deg, #60a5fa, #818cf8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: #4a4a5e;
+      font-size: 15px;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+      white-space: nowrap;
+    }
+
+    .nav-menu a:hover {
+      color: #0066ff;
+    }
+
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #0066ff;
+      transition: width 0.3s;
+    }
+
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+      padding: 12px 0;
+      min-width: 280px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+      margin-top: 16px;
+      border: 1px solid rgba(0, 102, 255, 0.1);
+      z-index: 1000;
+    }
+
+    .dropdown-menu-wide {
+      min-width: 900px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-10px);
+      padding: 24px;
+    }
+
+    .nav-item:hover .dropdown-menu-wide {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .dropdown-column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dropdown-category {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #0066ff;
+      letter-spacing: 0.8px;
+      margin-bottom: 12px;
+      margin-top: 16px;
+      padding-left: 20px;
+    }
+
+    .dropdown-category:first-child {
+      margin-top: 0;
+    }
+
+    .nav-item:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-menu a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 20px;
+      color: #4a4a5e;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s;
+      border-left: 3px solid transparent;
+    }
+
+    .dropdown-menu a::after {
+      display: none;
+    }
+
+    .dropdown-menu a:hover {
+      background: linear-gradient(90deg, rgba(0, 102, 255, 0.08), transparent);
+      color: #0066ff;
+      border-left-color: #0066ff;
+      padding-left: 24px;
+    }
+
+    .dropdown-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .icon-industrial {
+      background: linear-gradient(135deg, #6b7280, #4b5563);
+    }
+
+    .icon-trainer {
+      background: linear-gradient(135deg, #6b7280, #4b5563);
+    }
+
+    .icon-developer {
+      background: linear-gradient(135deg, #6b7280, #4b5563);
+    }
+
+    .icon-custom {
+      background: linear-gradient(135deg, #6b7280, #4b5563);
+    }
+
+    .icon-education {
+      background: linear-gradient(135deg, #6b7280, #4b5563);
+    }
+
+    .icon-starter {
+      background: linear-gradient(135deg, #6b7280, #4b5563);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-shrink: 0;
+    }
+
+    .ecosystem-section {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-left: 24px;
+      border-left: 1px solid #e5e5e5;
+    }
+
+    .ecosystem-label {
+      font-size: 10px;
+      color: #9999aa;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .ecosystem-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: nowrap;
+    }
+
+    .ecosystem-links a {
+      text-decoration: none;
+      color: #4a4a5e;
+      font-size: 12px;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 2px;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+
+    .ecosystem-links a:hover {
+      color: #0066ff;
+      border-bottom-color: #0066ff;
+    }
+
+    .header-buttons {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 11px 22px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      border: none;
+      outline: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0066ff, #0052cc);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 102, 255, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #4a4a5e;
+      border: 1.5px solid #d0d0d8;
+    }
+
+    .btn-secondary:hover {
+      border-color: #0066ff;
+      color: #0066ff;
+    }
+
+    .btn-icon {
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-darkmode {
+      background: transparent;
+      border: 1.5px solid #e8e8f0;
+      color: #4a4a5e;
+      transition: all 0.3s ease;
+    }
+
+    .btn-darkmode:hover {
+      border-color: #6366f1;
+      background: rgba(99, 102, 241, 0.08);
+      transform: rotate(180deg);
+    }
+
+    .btn-darkmode .icon-sun,
+    .btn-darkmode .icon-moon {
+      position: absolute;
+      font-size: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-darkmode .icon-sun {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+
+    .btn-darkmode .icon-moon {
+      opacity: 0;
+      transform: scale(0) rotate(-180deg);
+    }
+
+    body.dark-mode .btn-darkmode {
+      border-color: #4a4a5e;
+      color: #b8b8c8;
+    }
+
+    body.dark-mode .btn-darkmode:hover {
+      border-color: #6366f1;
+      background: rgba(99, 102, 241, 0.15);
+    }
+
+    body.dark-mode .btn-darkmode .icon-sun {
+      opacity: 0;
+      transform: scale(0) rotate(180deg);
+    }
+
+    body.dark-mode .btn-darkmode .icon-moon {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+
+    /* Hero Section */
+    .hero {
+      margin-top: 75px;
+      padding: 120px 5% 120px;
+      background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      max-width: 1400px;
+      margin: 0 auto;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-content {
+      padding-right: 20px;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      padding: 8px 18px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(0, 102, 255, 0.1));
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 24px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #6366f1;
+      margin-bottom: 28px;
+      letter-spacing: 0.3px;
+    }
+
+    .hero-headline {
+      font-size: 52px;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #1a1a2e;
+      margin-bottom: 24px;
+      letter-spacing: -1px;
+    }
+
+    .hero-subheadline {
+      font-size: 19px;
+      line-height: 1.65;
+      color: #5a5a6e;
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+    }
+
+    .btn-hero-primary {
+      padding: 16px 36px;
+      font-size: 16px;
+      background: linear-gradient(135deg, #0066ff, #0052cc);
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0, 102, 255, 0.35);
+      transition: all 0.3s;
+    }
+
+    .btn-hero-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 102, 255, 0.45);
+    }
+
+    .btn-hero-secondary {
+      padding: 16px 36px;
+      font-size: 16px;
+      background: transparent;
+      color: #4a4a5e;
+      border: 2px solid #d0d0d8;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-hero-secondary:hover {
+      border-color: #6366f1;
+      color: #6366f1;
+      background: rgba(99, 102, 241, 0.03);
+    }
+
+    /* Hero Visual */
+    .hero-visual {
+      position: relative;
+      height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .visual-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Dashboard mockup */
+    .dashboard-card {
+      position: absolute;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+      padding: 24px;
+      border: 1px solid rgba(0, 102, 255, 0.1);
+    }
+
+    .main-dashboard {
+      width: 480px;
+      height: 340px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #f0f0f5;
+    }
+
+    .dashboard-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a1a2e;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-indicator {
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .dashboard-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .metric-card {
+      background: linear-gradient(135deg, #f8f9ff, #ffffff);
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(99, 102, 241, 0.1);
+    }
+
+    .metric-label {
+      font-size: 11px;
+      color: #9999aa;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .metric-value {
+      font-size: 24px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #0066ff, #6366f1);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .chart-area {
+      height: 140px;
+      background: linear-gradient(180deg, rgba(99, 102, 241, 0.08) 0%, transparent 100%);
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chart-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+      background: linear-gradient(135deg, #0066ff, #6366f1);
+      clip-path: polygon(0 80%, 15% 60%, 30% 70%, 45% 40%, 60% 50%, 75% 30%, 90% 45%, 100% 20%, 100% 100%, 0 100%);
+      opacity: 0.3;
+    }
+
+    /* Floating elements */
+    .float-card {
+      position: absolute;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+      padding: 16px;
+      border: 1px solid rgba(99, 102, 241, 0.15);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .iot-node {
+      width: 160px;
+      top: 8%;
+      right: 5%;
+      z-index: 2;
+      animation-delay: -2s;
+    }
+
+    .node-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .node-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 5px;
+    }
+
+    .node-sublabel {
+      font-size: 11px;
+      color: #9999aa;
+    }
+
+    .ai-brain {
+      width: 150px;
+      bottom: 10%;
+      left: 5%;
+      z-index: 4;
+      animation-delay: -4s;
+    }
+
+    .brain-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #0066ff, #00ccff);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    /* Grid background effect */
+    .grid-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.5;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1001;
+    }
+
+    .mobile-menu-toggle span {
+      width: 24px;
+      height: 2.5px;
+      background: #4a4a5e;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .mobile-menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .mobile-menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .mobile-menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    .mobile-nav-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .mobile-nav-overlay.active {
+      opacity: 1;
+    }
+
+    .mobile-nav-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 85%;
+      max-width: 400px;
+      height: 100%;
+      background: #ffffff;
+      box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+      z-index: 999;
+      overflow-y: auto;
+      transition: right 0.3s ease;
+      padding: 80px 0 40px 0;
+    }
+
+    .mobile-nav-menu.active {
+      right: 0;
+    }
+
+    .mobile-nav-item {
+      border-bottom: 1px solid #f0f0f5;
+    }
+
+    .mobile-nav-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 24px;
+      color: #4a4a5e;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .mobile-nav-link:hover {
+      background: rgba(0, 102, 255, 0.05);
+      color: #0066ff;
+    }
+
+    .mobile-nav-arrow {
+      font-size: 12px;
+      transition: transform 0.3s;
+    }
+
+    .mobile-nav-arrow.active {
+      transform: rotate(180deg);
+    }
+
+    .mobile-submenu {
+      max-height: 0;
+      overflow: hidden;
+      background: #f8f9ff;
+      transition: max-height 0.3s ease;
+    }
+
+    .mobile-submenu.active {
+      max-height: 2000px;
+    }
+
+    .mobile-submenu-category {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #0066ff;
+      letter-spacing: 0.8px;
+      padding: 16px 24px 8px 24px;
+      margin-top: 8px;
+    }
+
+    .mobile-submenu-category:first-child {
+      margin-top: 0;
+      padding-top: 12px;
+    }
+
+    .mobile-submenu a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 24px;
+      color: #4a4a5e;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      border-left: 3px solid transparent;
+    }
+
+    .mobile-submenu a:hover {
+      background: rgba(0, 102, 255, 0.08);
+      color: #0066ff;
+      border-left-color: #0066ff;
+      padding-left: 28px;
+    }
+
+    .mobile-ecosystem {
+      padding: 24px;
+      border-bottom: 1px solid #f0f0f5;
+    }
+
+    .mobile-ecosystem-label {
+      font-size: 11px;
+      color: #9999aa;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .mobile-ecosystem-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mobile-ecosystem-links a {
+      color: #4a4a5e;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 8px 0;
+      border-bottom: 1px solid transparent;
+      transition: all 0.3s;
+    }
+
+    .mobile-ecosystem-links a:hover {
+      color: #0066ff;
+      border-bottom-color: #0066ff;
+    }
+
+    .mobile-buttons {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* Capabilities Section */
+    .capabilities-section {
+      padding: 100px 5% 100px;
+      background: #ffffff;
+      position: relative;
+    }
+
+    .capabilities-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .capabilities-headline {
+      font-size: 42px;
+      font-weight: 800;
+      color: #1a1a2e;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+
+    .capabilities-subheadline {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #5a5a6e;
+      margin-bottom: 60px;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .capabilities-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 60px;
+    }
+
+    .capability-card {
+      background: #ffffff;
+      border: 1.5px solid #e8e8f0;
+      border-radius: 20px;
+      padding: 48px 36px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .capability-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #0066ff, #6366f1);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .capability-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 24px 48px rgba(0, 102, 255, 0.15);
+      border-color: rgba(0, 102, 255, 0.3);
+    }
+
+    .capability-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .capability-icon {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #f8f9ff, #ffffff);
+      border: 2px solid #e8e8f0;
+      border-radius: 20px;
+      transition: all 0.4s ease;
+      position: relative;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .capability-card:hover .capability-icon {
+      border-color: rgba(0, 102, 255, 0.3);
+      transform: scale(1.05) translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0, 102, 255, 0.15);
+      background: linear-gradient(135deg, rgba(0, 102, 255, 0.08), rgba(99, 102, 241, 0.05));
+    }
+
+    /* Bootcamp Icon - People in Training */
+    .bootcamp-icon {
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .bootcamp-stage {
+      width: 70px;
+      height: 6px;
+      background: linear-gradient(90deg, #e8e8f0, rgba(0, 102, 255, 0.3));
+      border-radius: 3px;
+    }
+
+    .bootcamp-people {
+      display: flex;
+      gap: 8px;
+      align-items: flex-end;
+    }
+
+    .bootcamp-person {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .person-head {
+      width: 16px;
+      height: 16px;
+      background: linear-gradient(135deg, #0066ff, #6366f1);
+      border-radius: 50%;
+      opacity: 0.6;
+      transition: all 0.3s ease;
+    }
+
+    .capability-card:hover .person-head {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    .person-body {
+      width: 12px;
+      height: 20px;
+      background: linear-gradient(180deg, #6366f1, #0066ff);
+      border-radius: 6px;
+      opacity: 0.6;
+      transition: all 0.3s ease;
+    }
+
+    .capability-card:hover .person-body {
+      opacity: 1;
+    }
+
+    .bootcamp-person:nth-child(1) .person-body { height: 18px; }
+    .bootcamp-person:nth-child(2) .person-body { height: 22px; }
+    .bootcamp-person:nth-child(3) .person-body { height: 20px; }
+
+    /* Training Kit Icon - Box with Components */
+    .kit-icon {
+      width: 100%;
+      height: 100%;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .kit-box {
+      width: 70px;
+      height: 50px;
+      background: linear-gradient(135deg, #f8f9ff, #ffffff);
+      border: 2.5px solid #e8e8f0;
+      border-radius: 12px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .capability-card:hover .kit-box {
+      border-color: rgba(0, 102, 255, 0.4);
+      background: linear-gradient(135deg, rgba(0, 102, 255, 0.08), rgba(99, 102, 241, 0.05));
+    }
+
+    .kit-box::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      right: 8px;
+      height: 12px;
+      background: linear-gradient(135deg, rgba(0, 102, 255, 0.2), rgba(99, 102, 241, 0.2));
+      border-radius: 4px;
+    }
+
+    .kit-box::after {
+      content: '';
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      right: 8px;
+      height: 18px;
+      background: linear-gradient(135deg, rgba(0, 102, 255, 0.15), rgba(99, 102, 241, 0.15));
+      border-radius: 4px;
+    }
+
+    .kit-components {
+      display: flex;
+      gap: 6px;
+    }
+
+    .kit-component {
+      width: 18px;
+      height: 18px;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      border-radius: 6px;
+      opacity: 0.6;
+      transition: all 0.3s ease;
+    }
+
+    .capability-card:hover .kit-component {
+      opacity: 1;
+      transform: translateY(-3px);
+    }
+
+    .kit-component:nth-child(1) { border-radius: 50%; }
+    .kit-component:nth-child(2) { border-radius: 4px; }
+    .kit-component:nth-child(3) { border-radius: 50%; width: 14px; height: 14px; }
+
+    /* Mini Course Icon - Play Button with Curriculum */
+    .course-icon {
+      width: 100%;
+      height: 100%;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .course-play-circle {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #0066ff, #6366f1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      opacity: 0.8;
+      transition: all 0.3s ease;
+    }
+
+    .capability-card:hover .course-play-circle {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    .course-play-triangle {
+      width: 0;
+      height: 0;
+      border-left: 14px solid #ffffff;
+      border-top: 9px solid transparent;
+      border-bottom: 9px solid transparent;
+      margin-left: 4px;
+    }
+
+    .course-curriculum {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      width: 70px;
+    }
+
+    .course-line {
+      height: 4px;
+      background: linear-gradient(90deg, rgba(0, 102, 255, 0.3), transparent);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .capability-card:hover .course-line {
+      background: linear-gradient(90deg, rgba(0, 102, 255, 0.6), rgba(99, 102, 241, 0.3));
+    }
+
+    .course-line:nth-child(1) { width: 100%; }
+    .course-line:nth-child(2) { width: 80%; }
+    .course-line:nth-child(3) { width: 90%; }
+
+    .capability-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1a1a2e;
+      margin-bottom: 16px;
+      letter-spacing: -0.4px;
+      text-align: center;
+    }
+
+    .capability-description {
+      font-size: 16px;
+      line-height: 1.65;
+      color: #5a5a6e;
+      margin: 0 0 28px 0;
+      text-align: center;
+    }
+
+    .capability-cta {
+      padding: 14px 32px;
+      background: transparent;
+      color: #0066ff;
+      border: 2px solid #0066ff;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: auto;
+    }
+
+    .capability-cta:hover {
+      background: linear-gradient(135deg, #0066ff, #6366f1);
+      color: #ffffff;
+      border-color: transparent;
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 102, 255, 0.35);
+    }
+
+    /* Training Kits Section */
+    .kits-section {
+      padding: 100px 5% 100px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8f9ff 100%);
+      position: relative;
+    }
+
+    .kits-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .kits-headline {
+      font-size: 42px;
+      font-weight: 800;
+      color: #1a1a2e;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+
+    .kits-subheadline {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #5a5a6e;
+      margin-bottom: 60px;
+      max-width: 780px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .kit-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-bottom: 80px;
+    }
+
+    .kit-card {
+      background: #ffffff;
+      border: 1.5px solid #e8e8f0;
+      border-radius: 20px;
+      padding: 40px 32px;
+      text-align: left;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .kit-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #0066ff, #6366f1);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .kit-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 48px rgba(0, 102, 255, 0.15);
+      border-color: rgba(0, 102, 255, 0.3);
+    }
+
+    .kit-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .kit-icon-wrapper {
+      margin-bottom: 24px;
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f8f9ff;
+    }
+
+    .kit-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.3s ease;
+    }
+
+    .kit-card:hover .kit-image {
+      transform: scale(1.05);
+    }
+
+    .kit-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      border: 1.5px solid #e8e8f0;
+    }
+
+    .kit-icon-starter {
+      background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+      color: #0066ff;
+    }
+
+    .kit-icon-campus {
+      background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+      color: #6366f1;
+    }
+
+    .kit-icon-industrial {
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      color: #d97706;
+    }
+
+    .kit-card:hover .kit-icon {
+      transform: scale(1.1) rotate(5deg);
+      border-color: currentColor;
+    }
+
+    .kit-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: rgba(99, 102, 241, 0.08);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #6366f1;
+      margin-bottom: 16px;
+      letter-spacing: 0.2px;
+    }
+
+    .kit-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #1a1a2e;
+      margin-bottom: 12px;
+      letter-spacing: -0.3px;
+      line-height: 1.3;
+    }
+
+    .kit-description {
+      font-size: 15px;
+      line-height: 1.65;
+      color: #5a5a6e;
+      margin-bottom: 20px;
+    }
+
+    .kit-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px 0;
+      flex-grow: 1;
+    }
+
+    .kit-features li {
+      font-size: 14px;
+      color: #4a4a5e;
+      padding: 10px 0;
+      padding-left: 28px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .kit-features li::before {
+      content: '�������';
+      position: absolute;
+      left: 0;
+      color: #0066ff;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .kit-cta {
+      padding: 14px 28px;
+      background: transparent;
+      color: #0066ff;
+      border: 2px solid #0066ff;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      text-align: center;
+    }
+
+    .kit-cta:hover {
+      background: linear-gradient(135deg, #0066ff, #6366f1);
+      color: #ffffff;
+      border-color: transparent;
+      transform: scale(1.02);
+    }
+
+    /* Lab Package Banner */
+    .lab-package-banner {
+      background: linear-gradient(135deg, #f8f9ff, #ffffff);
+      border: 2px solid rgba(99, 102, 241, 0.2);
+      border-radius: 24px;
+      padding: 48px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 102, 255, 0.08);
+    }
+
+    .lab-package-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .lab-package-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .lab-package-left {
+      text-align: left;
+    }
+
+    .lab-package-badge {
+      display: inline-block;
+      padding: 8px 18px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(0, 102, 255, 0.15));
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      border-radius: 24px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #6366f1;
+      margin-bottom: 16px;
+      letter-spacing: 0.3px;
+    }
+
+    .lab-package-title {
+      font-size: 36px;
+      font-weight: 800;
+      color: #1a1a2e;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+
+    .lab-package-description {
+      font-size: 17px;
+      line-height: 1.7;
+      color: #5a5a6e;
+      margin-bottom: 28px;
+    }
+
+    .lab-package-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 32px 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .lab-package-features li {
+      font-size: 15px;
+      color: #4a4a5e;
+      padding-left: 28px;
+      position: relative;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    .lab-package-features li::before {
+      content: '\2713';
+      position: absolute;
+      left: 0;
+      color: #0066ff;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .lab-package-cta {
+      padding: 16px 36px;
+      background: linear-gradient(135deg, #0066ff, #6366f1);
+      color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px rgba(0, 102, 255, 0.3);
+    }
+
+    .lab-package-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 102, 255, 0.4);
+    }
+
+    /* Lab Illustration */
+    .lab-package-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lab-illustration {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .lab-desk {
+      display: flex;
+      gap: 12px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .lab-desk-1 {
+      animation-delay: 0s;
+    }
+
+    .lab-desk-2 {
+      animation-delay: -2s;
+    }
+
+    .lab-desk-3 {
+      animation-delay: -4s;
+    }
+
+    .lab-board {
+      width: 60px;
+      height: 40px;
+      background: linear-gradient(135deg, #ffffff, #f8f9ff);
+      border: 2px solid #e8e8f0;
+      border-radius: 8px;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+    }
+
+    .lab-board::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(99, 102, 241, 0.1));
+      border-radius: 4px;
+    }
+
+    .lab-board::after {
+      content: '';
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 2px;
+      background: linear-gradient(90deg, #0066ff, #6366f1);
+      opacity: 0.3;
+    }
+
+    .lab-package-banner:hover .lab-board {
+      border-color: rgba(0, 102, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    .lab-icon-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 48px;
+      opacity: 0.15;
+      z-index: 0;
+    }
+
+    /* Mini Courses Section */
+    .mini-courses-section {
+      padding: 100px 5% 100px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8f9ff 100%);
+      position: relative;
+    }
+
+    .mini-courses-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .mini-courses-headline {
+      font-size: 42px;
+      font-weight: 800;
+      color: #1a1a2e;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+
+    .mini-courses-subheadline {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #5a5a6e;
+      margin-bottom: 60px;
+      max-width: 780px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Free Course Highlight */
+    .free-course-highlight {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 24px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+      margin-bottom: 80px;
+    }
+
+    .free-course-highlight::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .free-course-content {
+      text-align: left;
+      position: relative;
+      z-index: 2;
+    }
+
+    .free-badge {
+      display: inline-block;
+      padding: 8px 20px;
+      background: linear-gradient(135deg, #10b981, #059669);
+      border: 2px solid #ffffff;
+      border-radius: 24px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+      animation: pulse-badge 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-badge {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 6px 24px rgba(16, 185, 129, 0.6);
+      }
+    }
+
+    .free-course-title {
+      font-size: 32px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+
+    .free-course-description {
+      font-size: 17px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 24px;
+    }
+
+    .free-course-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 32px 0;
+    }
+
+    .free-course-features li {
+      font-size: 15px;
+      color: #ffffff;
+      padding: 10px 0;
+      padding-left: 28px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .free-course-features li::before {
+      content: '\2713';
+      position: absolute;
+      left: 0;
+      color: #10b981;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .free-course-cta {
+      padding: 16px 36px;
+      background: #ffffff;
+      color: #6366f1;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .free-course-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+      background: #f0f0ff;
+    }
+
+    .free-course-visual {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .free-visual-container {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .iot-board-icon {
+      width: 180px;
+      height: 120px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 16px;
+      position: relative;
+      backdrop-filter: blur(10px);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .board-chip {
+      width: 60px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      border-radius: 8px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .board-pins {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+
+    .board-pins::before,
+    .board-pins::after {
+      content: '';
+      width: 8px;
+      height: 16px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 2px;
+    }
+
+    .board-connection {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 16px;
+      height: 16px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 20px #10b981;
+      animation: pulse 2s infinite;
+    }
+
+    .connection-waves {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 280px;
+      height: 280px;
+    }
+
+    .wave {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: waveExpand 3s ease-out infinite;
+    }
+
+    .wave:nth-child(2) {
+      animation-delay: 1s;
+    }
+
+    .wave:nth-child(3) {
+      animation-delay: 2s;
+    }
+
+    @keyframes waveExpand {
+      0% {
+        width: 60%;
+        height: 60%;
+        opacity: 1;
+      }
+      100% {
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+      }
+    }
+
+    /* Carousel */
+    .courses-carousel-wrapper {
+      position: relative;
+      margin-top: 80px;
+    }
+
+    .carousel-section-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 32px;
+      text-align: left;
+    }
+
+    .carousel-nav {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: flex;
+      gap: 12px;
+      z-index: 10;
+    }
+
+    .carousel-btn {
+      width: 48px;
+      height: 48px;
+      background: #ffffff;
+      border: 1.5px solid #e8e8f0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #4a4a5e;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .carousel-btn:hover {
+      background: linear-gradient(135deg, #0066ff, #6366f1);
+      color: #ffffff;
+      border-color: transparent;
+      transform: scale(1.1);
+    }
+
+    .carousel-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: scale(1);
+    }
+
+    .courses-carousel {
+      display: flex;
+      gap: 28px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 24px 4px;
+      margin: 0 -4px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .courses-carousel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .course-card {
+      min-width: 340px;
+      background: #ffffff;
+      border: 1.5px solid #e8e8f0;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      position: relative;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      flex-shrink: 0;
+    }
+
+    .course-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 48px rgba(0, 102, 255, 0.15);
+      border-color: rgba(0, 102, 255, 0.3);
+    }
+
+    .course-image {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .course-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.4s ease;
+    }
+
+    .course-card:hover .course-img {
+      transform: scale(1.1);
+    }
+
+    .course-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #6366f1;
+      letter-spacing: 0.5px;
+      backdrop-filter: blur(10px);
+      height: 28px;
+      display: flex;
+      align-items: center;
+      z-index: 1;
+    }
+
+    .course-price {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      padding: 6px 14px;
+      background: rgba(0, 0, 0, 0.75);
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #ffffff;
+      backdrop-filter: blur(10px);
+      height: 28px;
+      display: flex;
+      align-items: center;
+      z-index: 1;
+    }
+
+    .lifetime-badge {
+      position: absolute;
+      top: 16px;
+      left: 122px;
+      padding: 6px 14px;
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.3px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+      z-index: 2;
+      height: 28px;
+      display: flex;
+      align-items: center;
+    }
+
+    .free-course-highlight {
+      position: relative;
+    }
+
+    .free-lifetime-badge {
+      position: absolute;
+      top: 32px;
+      left: 142px;
+      padding: 6px 16px;
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+      z-index: 10;
+      height: 28px;
+      display: flex;
+      align-items: center;
+    }
+
+    .course-info {
+      padding: 24px;
+    }
+
+    .course-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+      line-height: 1.3;
+    }
+
+    .course-subtitle {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #5a5a6e;
+      margin-bottom: 20px;
+    }
+
+    .course-cta {
+      width: 100%;
+      padding: 12px 24px;
+      background: transparent;
+      color: #0066ff;
+      border: 2px solid #0066ff;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .course-cta:hover {
+      background: linear-gradient(135deg, #0066ff, #6366f1);
+      color: #ffffff;
+      border-color: transparent;
+      transform: scale(1.02);
+    }
+
+    /* Testimonials Section */
+    .testimonials-section {
+      padding: 100px 5% 100px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8f9ff 100%);
+      position: relative;
+    }
+
+    .testimonials-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .testimonials-headline {
+      font-size: 42px;
+      font-weight: 800;
+      color: #1a1a2e;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+
+    .testimonials-subheadline {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #5a5a6e;
+      margin-bottom: 60px;
+      max-width: 780px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 60px;
+    }
+
+    .testimonial-card {
+      background: #ffffff;
+      border: 1.5px solid #e8e8f0;
+      border-radius: 20px;
+      padding: 40px 32px;
+      text-align: left;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .testimonial-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #0066ff, #6366f1);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 48px rgba(0, 102, 255, 0.15);
+      border-color: rgba(0, 102, 255, 0.3);
+    }
+
+    .testimonial-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .testimonial-quote-icon {
+      font-size: 48px;
+      color: rgba(99, 102, 241, 0.2);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-text {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #4a4a5e;
+      margin-bottom: 28px;
+      font-style: italic;
+      flex-grow: 1;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .testimonial-photo {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e0e7ff, #f3f4f6);
+      border: 2px solid #e8e8f0;
+      overflow: hidden;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .testimonial-card:hover .testimonial-photo {
+      border-color: rgba(0, 102, 255, 0.4);
+      transform: scale(1.05);
+    }
+
+    .testimonial-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .testimonial-info {
+      flex: 1;
+    }
+
+    .testimonial-name {
+      font-size: 17px;
+      font-weight: 800;
+      color: #1a1a2e;
+      margin-bottom: 4px;
+      letter-spacing: -0.2px;
+    }
+
+    .testimonial-position {
+      font-size: 14px;
+      color: #6366f1;
+      font-weight: 600;
+    }
+
+    /* Final CTA Section */
+    .final-cta-section {
+      padding: 120px 5% 120px;
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .final-cta-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+    }
+
+    .cta-circuit-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.3;
+    }
+
+    .cta-glow-orb {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.2;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .cta-glow-1 {
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.6) 0%, transparent 70%);
+      top: -20%;
+      right: -10%;
+      animation-delay: 0s;
+    }
+
+    .cta-glow-2 {
+      background: radial-gradient(circle, rgba(0, 102, 255, 0.5) 0%, transparent 70%);
+      bottom: -20%;
+      left: -10%;
+      animation-delay: -4s;
+    }
+
+    .final-cta-container {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .final-cta-headline {
+      font-size: 52px;
+      font-weight: 900;
+      color: #ffffff;
+      margin-bottom: 24px;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .final-cta-subheadline {
+      font-size: 20px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 48px;
+      font-weight: 400;
+    }
+
+    .final-cta-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .final-cta-primary {
+      padding: 20px 48px;
+      background: linear-gradient(135deg, #0066ff, #00ccff);
+      color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 32px rgba(0, 102, 255, 0.5);
+      letter-spacing: 0.3px;
+      text-transform: none;
+    }
+
+    .final-cta-primary:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0, 102, 255, 0.7);
+      background: linear-gradient(135deg, #0052cc, #00b3e6);
+    }
+
+    .final-cta-secondary {
+      padding: 16px 40px;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.9);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      letter-spacing: 0.2px;
+    }
+
+    .final-cta-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.6);
+      color: #ffffff;
+      transform: scale(1.05);
+    }
+
+    /* Footer Section */
+    .footer {
+      background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1e 100%);
+      padding: 80px 5% 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), transparent);
+    }
+
+    .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 0.8fr 1fr;
+      gap: 60px;
+      padding-bottom: 60px;
+    }
+
+    .footer-column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .footer-brand {
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-size: 28px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #0066ff, #6366f1);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+      margin-bottom: 4px;
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 0.3px;
+      margin-bottom: 4px;
+    }
+
+    .footer-description {
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.5);
+      max-width: 280px;
+    }
+
+    .footer-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 8px;
+      letter-spacing: -0.2px;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      line-height: 1.5;
+    }
+
+    .footer-links a:hover {
+      color: #6366f1;
+      transform: translateX(4px);
+    }
+
+    .footer-icon {
+      font-size: 14px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .footer-contact li {
+      align-items: flex-start;
+    }
+
+    .footer-contact span:not(.footer-icon) {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.6;
+    }
+
+    .footer-services li {
+      gap: 12px;
+    }
+
+    .service-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .service-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .service-desc {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.4);
+      font-weight: 400;
+    }
+
+    /* Footer Bottom Bar */
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 28px 0;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .footer-bottom-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-copyright {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.4);
+      margin: 0;
+    }
+
+    .footer-legal {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-legal a {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.4);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-legal a:hover {
+      color: #6366f1;
+    }
+
+    .footer-separator {
+      color: rgba(255, 255, 255, 0.2);
+      font-size: 13px;
+    }
+
+    /* CTA Card */
+    .course-card-cta {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(0, 102, 255, 0.1));
+      border: 2px dashed rgba(99, 102, 241, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 380px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .course-card-cta:hover {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(0, 102, 255, 0.15));
+      border-color: rgba(99, 102, 241, 0.5);
+    }
+
+    .cta-blur-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="15" fill="%236366f1" opacity="0.1"/><circle cx="75" cy="75" r="20" fill="%230066ff" opacity="0.1"/></svg>');
+      background-size: cover;
+      filter: blur(40px);
+      opacity: 0.5;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .cta-icon {
+      font-size: 64px;
+      margin-bottom: 20px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .cta-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1a1a2e;
+      margin-bottom: 12px;
+      letter-spacing: -0.4px;
+    }
+
+    .cta-subtitle {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #5a5a6e;
+      margin-bottom: 28px;
+    }
+
+    .cta-button {
+      padding: 14px 32px;
+      background: linear-gradient(135deg, #0066ff, #6366f1);
+      color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0, 102, 255, 0.3);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(0, 102, 255, 0.4);
+    }
+
+    /* Trusted By Section */
+    .trusted-section {
+      padding: 100px 5% 80px;
+      background: linear-gradient(180deg, #ffffff 0%, #fafbff 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trusted-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .trusted-headline {
+      font-size: 38px;
+      font-weight: 800;
+      color: #1a1a2e;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .trusted-subheadline {
+      font-size: 17px;
+      line-height: 1.6;
+      color: #5a5a6e;
+      margin-bottom: 60px;
+      max-width: 780px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .logos-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      margin-top: 60px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .logo-row {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      flex-wrap: nowrap;
+      width: max-content;
+    }
+
+    .logo-row-1 {
+      animation: slideLeft 40s linear infinite;
+    }
+
+    .logo-row-2 {
+      animation: slideRight 45s linear infinite;
+    }
+
+    .logo-row-3 {
+      animation: slideLeft 42s linear infinite;
+    }
+
+    @keyframes slideLeft {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    @keyframes slideRight {
+      0% {
+        transform: translateX(-50%);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    .logo-item {
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+
+    .logo-item:hover {
+      transform: translateY(-4px) scale(1.05);
+    }
+
+    .logo-box {
+      min-width: 140px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      border: 1.5px solid #e8e8f0;
+      border-radius: 12px;
+      padding: 16px 24px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #4a4a5e;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .logo-box:hover {
+      border-color: rgba(0, 102, 255, 0.25);
+      box-shadow: 0 8px 24px rgba(0, 102, 255, 0.1);
+    }
+
+    /* Company logos - Blue tones */
+    .logo-pertamina {
+      background: linear-gradient(135deg, #ffffff, #f0f9ff);
+      color: #0066ff;
+    }
+
+    .logo-toyota {
+      background: linear-gradient(135deg, #ffffff, #fef3f2);
+      color: #dc2626;
+    }
+
+    .logo-bca {
+      background: linear-gradient(135deg, #ffffff, #eff6ff);
+      color: #2563eb;
+    }
+
+    .logo-kai {
+      background: linear-gradient(135deg, #ffffff, #f0fdf4);
+      color: #16a34a;
+    }
+
+    .logo-johnson {
+      background: linear-gradient(135deg, #ffffff, #fef2f2);
+      color: #991b1b;
+    }
+
+    .logo-asperio {
+      background: linear-gradient(135deg, #ffffff, #fefce8);
+      color: #ca8a04;
+    }
+
+    .logo-kuanta {
+      background: linear-gradient(135deg, #ffffff, #f5f3ff);
+      color: #7c3aed;
+    }
+
+    .logo-docmedika {
+      background: linear-gradient(135deg, #ffffff, #ecfdf5);
+      color: #059669;
+    }
+
+    /* School logos - Purple/Indigo tones */
+    .logo-smk2 {
+      background: linear-gradient(135deg, #ffffff, #f5f3ff);
+      color: #6366f1;
+    }
+
+    .logo-telkom {
+      background: linear-gradient(135deg, #ffffff, #fef2f2);
+      color: #ef4444;
+    }
+
+    .logo-muhammadiyah {
+      background: linear-gradient(135deg, #ffffff, #ecfdf5);
+      color: #10b981;
+    }
+
+    .logo-smkn4 {
+      background: linear-gradient(135deg, #ffffff, #fffbeb);
+      color: #f59e0b;
+    }
+
+    .logo-poltek {
+      background: linear-gradient(135deg, #ffffff, #eff6ff);
+      color: #3b82f6;
+    }
+
+    .logo-its {
+      background: linear-gradient(135deg, #ffffff, #fef3c7);
+      color: #d97706;
+    }
+
+    .logo-ugm {
+      background: linear-gradient(135deg, #ffffff, #fefce8);
+      color: #84cc16;
+    }
+
+    /* Mixed logos */
+    .logo-schneider {
+      background: linear-gradient(135deg, #ffffff, #f0fdf4);
+      color: #22c55e;
+    }
+
+    .logo-unair {
+      background: linear-gradient(135deg, #ffffff, #eff6ff);
+      color: #0284c7;
+    }
+
+    .logo-itb {
+      background: linear-gradient(135deg, #ffffff, #fef2f2);
+      color: #dc2626;
+    }
+
+    .logo-telkomsel {
+      background: linear-gradient(135deg, #ffffff, #fef2f2);
+      color: #b91c1c;
+    }
+
+    .logo-pln {
+      background: linear-gradient(135deg, #ffffff, #fefce8);
+      color: #eab308;
+    }
+
+    .logo-smkn1 {
+      background: linear-gradient(135deg, #ffffff, #f0f9ff);
+      color: #0891b2;
+    }
+
+    .logo-ui {
+      background: linear-gradient(135deg, #ffffff, #fefce8);
+      color: #f59e0b;
+    }
+
+    /* Programs Section */
+    .programs-section {
+      padding: 100px 5% 100px;
+      background: #ffffff;
+      position: relative;
+    }
+
+    .programs-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.03) 0%, transparent 50%),
+                  radial-gradient(circle at 20% 80%, rgba(0, 102, 255, 0.03) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .programs-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .programs-headline {
+      font-size: 42px;
+      font-weight: 800;
+      color: #1a1a2e;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+
+    .programs-subheadline {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #5a5a6e;
+      margin-bottom: 70px;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .programs-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-top: 70px;
+      align-items: start;
+    }
+
+    .programs-illustration {
+      display: none;
+    }
+
+    .programs-visual-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .programs-dashboard-card {
+      position: absolute;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+      padding: 24px;
+      border: 1px solid rgba(0, 102, 255, 0.1);
+    }
+
+    .programs-main-dashboard {
+      width: 280px;
+      height: 280px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+    }
+
+    .programs-dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #f0f0f5;
+    }
+
+    .programs-dashboard-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1a1a2e;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .programs-dashboard-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .programs-metric-card {
+      background: linear-gradient(135deg, #f8f9ff, #ffffff);
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(99, 102, 241, 0.1);
+    }
+
+    .programs-metric-label {
+      font-size: 10px;
+      color: #9999aa;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .programs-metric-value {
+      font-size: 20px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #0066ff, #6366f1);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .programs-chart-area {
+      height: 80px;
+      background: linear-gradient(180deg, rgba(99, 102, 241, 0.08) 0%, transparent 100%);
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .programs-chart-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+      background: linear-gradient(135deg, #0066ff, #6366f1);
+      clip-path: polygon(0 80%, 15% 60%, 30% 70%, 45% 40%, 60% 50%, 75% 30%, 90% 45%, 100% 20%, 100% 100%, 0 100%);
+      opacity: 0.3;
+    }
+
+    .programs-float-card {
+      position: absolute;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+      padding: 14px;
+      border: 1px solid rgba(99, 102, 241, 0.15);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .programs-bootcamp-node {
+      width: 120px;
+      top: 12%;
+      right: 8%;
+      z-index: 2;
+      animation-delay: -2s;
+    }
+
+    .programs-node-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    .programs-node-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 3px;
+    }
+
+    .programs-node-sublabel {
+      font-size: 9px;
+      color: #9999aa;
+    }
+
+    .programs-training-node {
+      width: 110px;
+      bottom: 18%;
+      left: 6%;
+      z-index: 4;
+      animation-delay: -4s;
+    }
+
+    .programs-training-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #0066ff, #00ccff);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .programs-grid-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+      background-size: 30px 30px;
+      opacity: 0.5;
+    }
+
+    .programs-banners {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .program-banner {
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+      border: 1.5px solid #e8e8f0;
+      border-radius: 20px;
+      padding: 40px 48px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 36px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+
+    .program-banner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 5px;
+      background: linear-gradient(180deg, #0066ff, #6366f1);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.4s ease;
+    }
+
+    .program-banner::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 200px;
+      background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.03));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .program-banner:hover {
+      transform: translateX(8px);
+      box-shadow: 0 12px 40px rgba(0, 102, 255, 0.12);
+      border-color: rgba(0, 102, 255, 0.2);
+    }
+
+    .program-banner:hover::before {
+      transform: scaleY(1);
+    }
+
+    .program-banner:hover::after {
+      opacity: 1;
+    }
+
+    .program-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(0, 102, 255, 0.12));
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #6366f1;
+      letter-spacing: 0.3px;
+      margin-bottom: 8px;
+    }
+
+    .program-content {
+      flex: 1;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .program-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1a1a2e;
+      letter-spacing: -0.4px;
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .program-description {
+      font-size: 16px;
+      line-height: 1.65;
+      color: #5a5a6e;
+      margin: 0;
+    }
+
+    .program-cta {
+      padding: 14px 32px;
+      background: transparent;
+      color: #0066ff;
+      border: 2px solid #0066ff;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .program-cta:hover {
+      background: linear-gradient(135deg, #0066ff, #6366f1);
+      color: #ffffff;
+      border-color: transparent;
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 102, 255, 0.35);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+
+      .hero-visual {
+        height: 400px;
+      }
+
+      .header-left nav,
+      .ecosystem-section,
+      .header-buttons {
+        display: none;
+      }
+
+      .mobile-menu-toggle {
+        display: flex;
+      }
+
+      .mobile-nav-overlay,
+      .mobile-nav-menu {
+        display: block;
+      }
+
+      .header-container {
+        justify-content: space-between;
+      }
+
+      .header-left {
+        gap: 0;
+      }
+
+      .capabilities-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .capabilities-headline {
+        font-size: 32px;
+      }
+
+      .capabilities-subheadline {
+        font-size: 16px;
+      }
+
+      .kit-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .kits-headline {
+        font-size: 32px;
+      }
+
+      .kits-subheadline {
+        font-size: 16px;
+      }
+
+      .lab-package-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .lab-package-visual {
+        order: -1;
+      }
+
+      .lab-package-features {
+        grid-template-columns: 1fr;
+      }
+
+      .programs-headline {
+        font-size: 32px;
+      }
+
+      .programs-subheadline {
+        font-size: 16px;
+      }
+
+      .programs-banners {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .program-banner {
+        padding: 32px 36px;
+        gap: 28px;
+      }
+
+      .program-title {
+        font-size: 20px;
+      }
+
+      .program-description {
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .trusted-section {
+        padding: 60px 5%;
+      }
+
+      .trusted-headline {
+        font-size: 30px;
+      }
+
+      .trusted-subheadline {
+        font-size: 16px;
+      }
+
+      .logo-row-1,
+      .logo-row-2,
+      .logo-row-3 {
+        margin-left: 0;
+      }
+
+      .logo-box {
+        min-width: 120px;
+        height: 60px;
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .final-cta-section {
+        padding: 80px 5%;
+      }
+
+      .final-cta-headline {
+        font-size: 38px;
+      }
+
+      .final-cta-subheadline {
+        font-size: 18px;
+      }
+
+      .final-cta-buttons {
+        width: 100%;
+      }
+
+      .final-cta-primary,
+      .final-cta-secondary {
+        width: 100%;
+        max-width: 400px;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .footer-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+        max-width: 100%;
+        text-align: left;
+      }
+
+      .footer-description {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .footer {
+        padding: 60px 5% 0;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding-bottom: 40px;
+      }
+
+      .footer-brand {
+        text-align: left;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .footer-logo {
+        font-size: 24px;
+      }
+
+      .footer-tagline {
+        font-size: 12px;
+      }
+
+      .footer-description {
+        font-size: 13px;
+      }
+
+      .footer-title {
+        font-size: 15px;
+      }
+
+      .footer-links {
+        gap: 14px;
+      }
+
+      .footer-links a {
+        font-size: 13px;
+      }
+
+      .footer-contact span:not(.footer-icon) {
+        font-size: 13px;
+      }
+
+      .footer-bottom-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+      }
+
+      .footer-copyright {
+        font-size: 12px;
+      }
+
+      .footer-legal {
+        font-size: 12px;
+      }
+
+      .footer-legal a {
+        font-size: 12px;
+      }
+
+      .final-cta-section {
+        padding: 60px 5%;
+      }
+
+      .final-cta-headline {
+        font-size: 32px;
+        margin-bottom: 20px;
+      }
+
+      .final-cta-subheadline {
+        font-size: 16px;
+        margin-bottom: 36px;
+      }
+
+      .final-cta-primary {
+        padding: 18px 36px;
+        font-size: 16px;
+      }
+
+      .final-cta-secondary {
+        padding: 14px 32px;
+        font-size: 14px;
+      }
+
+      .trusted-section {
+        padding: 50px 5%;
+      }
+
+      .trusted-headline {
+        font-size: 26px;
+      }
+
+      .trusted-subheadline {
+        font-size: 15px;
+      }
+
+      .logos-wrapper {
+        gap: 24px;
+      }
+
+      .logo-row {
+        gap: 16px;
+      }
+
+      .logo-box {
+        min-width: 100px;
+        height: 55px;
+        font-size: 11px;
+        padding: 12px 16px;
+      }
+
+      .capabilities-section {
+        padding: 60px 5%;
+      }
+
+      .capabilities-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .capability-card {
+        padding: 32px 24px;
+      }
+
+      .mini-courses-section {
+        padding: 60px 5%;
+      }
+
+      .mini-courses-headline {
+        font-size: 32px;
+      }
+
+      .mini-courses-subheadline {
+        font-size: 16px;
+      }
+
+      .free-course-highlight {
+        grid-template-columns: 1fr;
+        padding: 32px 24px;
+        gap: 32px;
+      }
+
+      .free-course-title {
+        font-size: 24px;
+      }
+
+      .free-course-description {
+        font-size: 15px;
+      }
+
+      .free-visual-container {
+        width: 220px;
+        height: 220px;
+      }
+
+      .iot-board-icon {
+        width: 140px;
+        height: 90px;
+      }
+
+      .carousel-nav {
+        position: static;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .carousel-section-title {
+        text-align: center;
+        font-size: 22px;
+      }
+
+      .course-card {
+        min-width: 280px;
+      }
+
+      .kits-section {
+        padding: 60px 5%;
+      }
+
+      .kit-card {
+        padding: 32px 24px;
+      }
+
+      .lab-package-banner {
+        padding: 32px 24px;
+      }
+
+      .lab-package-title {
+        font-size: 28px;
+      }
+
+      .lab-package-description {
+        font-size: 15px;
+      }
+
+      .lab-illustration {
+        width: 220px;
+        height: 220px;
+      }
+
+      .lab-board {
+        width: 48px;
+        height: 32px;
+      }
+
+      .programs-section {
+        padding: 60px 5%;
+      }
+
+      .programs-banners {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .program-banner {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 28px 24px;
+        gap: 20px;
+      }
+
+      .program-title {
+        font-size: 19px;
+      }
+
+      .program-description {
+        font-size: 14px;
+      }
+
+      .program-cta {
+        width: 100%;
+        text-align: center;
+      }
+
+      .testimonials-section {
+        padding: 60px 5%;
+      }
+
+      .testimonials-headline {
+        font-size: 32px;
+      }
+
+      .testimonials-subheadline {
+        font-size: 16px;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .testimonial-card {
+        padding: 32px 24px;
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body><!-- Header -->
+  <header class="header">
+   <div class="header-container">
+    <div class="header-left">
+     <div class="logo" id="brand-name">
+      ICHIBOT
+     </div>
+     <nav>
+      <ul class="nav-menu">
+       <li class="nav-item"><a href="#bootcamp">Bootcamp</a>
+        <div class="dropdown-menu"><a href="#industrial"> <span class="dropdown-icon icon-industrial">🏭</span> <span>Industrial AI-IoT Bootcamp + Coaching</span> </a> <a href="#tot"> <span class="dropdown-icon icon-trainer">👨‍🏫</span> <span>AI-IoT Training of Trainer Bootcamp</span> </a> <a href="#developer"> <span class="dropdown-icon icon-developer">💻</span> <span>AI-IoT Developer Bootcamp</span> </a> <a href="#custom"> <span class="dropdown-icon icon-custom">⚙������</span> <span>Customized Bootcamp</span> </a>
+        </div></li>
+       <li class="nav-item"><a href="#kits">Training Kits</a>
+        <div class="dropdown-menu"><a href="#industrial-kit"> <span class="dropdown-icon icon-industrial">🏭</span> <span>AI-IoT Industrial Training Kit</span> </a> <a href="#education-kit"> <span class="dropdown-icon icon-education">��</span> <span>AI-IoT Education Kit</span> </a> <a href="#starter-kit"> <span class="dropdown-icon icon-starter">🚀</span> <span>AI-IoT Starter Kit</span> </a> <a href="#smart-lab-kit"> <span class="dropdown-icon icon-developer">🔬</span> <span>AI-IoT Smart Lab Package</span> </a> <a href="#custom-kit"> <span class="dropdown-icon icon-custom">⚙️</span> <span>Customized Kit</span> </a>
+        </div></li>
+       <li class="nav-item"><a href="#courses">Mini Courses</a>
+        <div class="dropdown-menu dropdown-menu-wide">
+         <div class="dropdown-columns">
+          <div class="dropdown-column">
+           <div class="dropdown-category">
+            IoT Fundamentals
+           </div><a href="#course-1">Intro to IoT: Bikin Perangkatmu Online dalam 30 Menit</a> <a href="#course-2">ESP32 Quickstart: Dari Zero ke Sensor Pertama</a> <a href="#course-3">MicroPython untuk IoT Pemula</a> <a href="#course-4">Arduino Essentials untuk IoT Modern</a> <a href="#course-5">Sensor &amp; Aktuator 101: Baca, Kontrol, Automasi</a>
+           <div class="dropdown-category">
+            AI × IoT (AIoT)
+           </div><a href="#course-6">AI Vision Dasar untuk IoT: Deteksi Objek dalam 1 Jam</a> <a href="#course-7">TinyML Starter: AI Kecil untuk Perangkat IoT</a> <a href="#course-8">ESP32-CAM Mini Course: Kamera AI untuk Pemula</a> <a href="#course-9">AI Counting Basics: Hitung Objek dengan Vision AI</a> <a href="#course-10">AI Anomaly Detection untuk Monitoring Sensor</a>
+          </div>
+          <div class="dropdown-column">
+           <div class="dropdown-category">
+            Dashboard &amp; Data
+           </div><a href="#course-11">Node-RED for Beginners: Automasi IoT Tanpa Coding</a> <a href="#course-12">ThingsBoard Mini: Bangun Dashboard IoT Profesional</a> <a href="#course-13">MQTT 101: Cara Kerja Data IoT</a> <a href="#course-14">Integrasi IoT ke Google Sheets &amp; Notifikasi Otomatis</a> <a href="#course-15">Database Mini Course: Simpan Data IoT dengan Mudah</a>
+           <div class="dropdown-category">
+            Automation &amp; Workflow
+           </div><a href="#course-16">n8n Automation: Buat Sistem IoT Kirim WA/Email Otomatis</a> <a href="#course-17">IFTTT-Style IoT Automation: Buat A → B Action dengan Mudah</a> <a href="#course-18">Low-Code IoT: Bangun Sistem tanpa Coding Panjang</a>
+          </div>
+          <div class="dropdown-column">
+           <div class="dropdown-category">
+            Cloud &amp; Deployment
+           </div><a href="#course-19">Cloud IoT Basics: Kirim Data ke Cloud dalam 1 Jam</a> <a href="#course-20">Deploy IoT to Cloud: Dari ESP32 ke Server</a> <a href="#course-21">Mini Course: API &amp; Webhooks untuk IoT</a>
+           <div class="dropdown-category">
+            Project-Based Mini Courses
+           </div><a href="#course-22">Smart Room in 1 Hour: IoT untuk Rumah Pintar Mini</a> <a href="#course-23">Smart Farming Starter: Monitoring Tanaman Otomatis</a> <a href="#course-24">Weather Station Mini Course</a> <a href="#course-25">IoT Alert System: Buzzer, WA Notification, Dashboard</a>
+          </div>
+         </div>
+        </div></li>
+      </ul>
+     </nav>
+    </div>
+    <div class="header-right">
+     <div class="ecosystem-section"><span class="ecosystem-label" id="ecosystem-label">Ecosystem:</span>
+      <div class="ecosystem-links"><a href="#store" target="_blank" rel="noopener noreferrer">Ichibot Store</a> <a href="#robotics" target="_blank" rel="noopener noreferrer">Robotics &amp; STEAM</a> <a href="#industrial" target="_blank" rel="noopener noreferrer">Industrial Solution</a>
+      </div>
+     </div>
+     <div class="header-buttons"><button class="btn btn-icon btn-darkmode" id="darkmode-toggle" aria-label="Toggle dark mode"> <span class="icon-sun">☀️</span> <span class="icon-moon">🌙</span> </button> <button class="btn btn-primary">Konsultasi Gratis</button> <button class="btn btn-secondary">Masuk</button>
+     </div><!-- Mobile Menu Toggle --> <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu"> <span></span> <span></span> <span></span> </button>
+    </div>
+   </div>
+  </header><!-- Mobile Navigation Overlay -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div><!-- Mobile Navigation Menu -->
+  <nav class="mobile-nav-menu" id="mobile-nav-menu"><!-- Bootcamp -->
+   <div class="mobile-nav-item"><a href="#bootcamp" class="mobile-nav-link" data-submenu="bootcamp"> Bootcamp <span class="mobile-nav-arrow">▼</span> </a>
+    <div class="mobile-submenu" id="submenu-bootcamp"><a href="#industrial"> <span class="dropdown-icon icon-industrial">🏭</span> <span>Industrial AI-IoT Bootcamp + Coaching</span> </a> <a href="#tot"> <span class="dropdown-icon icon-trainer">👨‍🏫</span> <span>AI-IoT Training of Trainer Bootcamp</span> </a> <a href="#developer"> <span class="dropdown-icon icon-developer">💻</span> <span>AI-IoT Developer Bootcamp</span> </a> <a href="#custom"> <span class="dropdown-icon icon-custom">⚙️</span> <span>Customized Bootcamp</span> </a>
+    </div>
+   </div><!-- Training Kits -->
+   <div class="mobile-nav-item"><a href="#kits" class="mobile-nav-link" data-submenu="kits"> Training Kits <span class="mobile-nav-arrow">▼</span> </a>
+    <div class="mobile-submenu" id="submenu-kits"><a href="#industrial-kit"> <span class="dropdown-icon icon-industrial">🏭</span> <span>AI-IoT Industrial Training Kit</span> </a> <a href="#education-kit"> <span class="dropdown-icon icon-education">📚</span> <span>AI-IoT Education Kit</span> </a> <a href="#starter-kit"> <span class="dropdown-icon icon-starter">🚀</span> <span>AI-IoT Starter Kit</span> </a> <a href="#smart-lab-kit"> <span class="dropdown-icon icon-developer">🔬</span> <span>AI-IoT Smart Lab Package</span> </a> <a href="#custom-kit"> <span class="dropdown-icon icon-custom">⚙️</span> <span>Customized Kit</span> </a>
+    </div>
+   </div><!-- Mini Courses -->
+   <div class="mobile-nav-item"><a href="#courses" class="mobile-nav-link" data-submenu="courses"> Mini Courses <span class="mobile-nav-arrow">▼</span> </a>
+    <div class="mobile-submenu" id="submenu-courses">
+     <div class="mobile-submenu-category">
+      IoT Fundamentals
+     </div><a href="#course-1">Intro to IoT: Bikin Perangkatmu Online dalam 30 Menit</a> <a href="#course-2">ESP32 Quickstart: Dari Zero ke Sensor Pertama</a> <a href="#course-3">MicroPython untuk IoT Pemula</a> <a href="#course-4">Arduino Essentials untuk IoT Modern</a> <a href="#course-5">Sensor &amp; Aktuator 101: Baca, Kontrol, Automasi</a>
+     <div class="mobile-submenu-category">
+      AI × IoT (AIoT)
+     </div><a href="#course-6">AI Vision Dasar untuk IoT: Deteksi Objek dalam 1 Jam</a> <a href="#course-7">TinyML Starter: AI Kecil untuk Perangkat IoT</a> <a href="#course-8">ESP32-CAM Mini Course: Kamera AI untuk Pemula</a> <a href="#course-9">AI Counting Basics: Hitung Objek dengan Vision AI</a> <a href="#course-10">AI Anomaly Detection untuk Monitoring Sensor</a>
+     <div class="mobile-submenu-category">
+      Dashboard &amp; Data
+     </div><a href="#course-11">Node-RED for Beginners: Automasi IoT Tanpa Coding</a> <a href="#course-12">ThingsBoard Mini: Bangun Dashboard IoT Profesional</a> <a href="#course-13">MQTT 101: Cara Kerja Data IoT</a> <a href="#course-14">Integrasi IoT ke Google Sheets &amp; Notifikasi Otomatis</a> <a href="#course-15">Database Mini Course: Simpan Data IoT dengan Mudah</a>
+     <div class="mobile-submenu-category">
+      Automation &amp; Workflow
+     </div><a href="#course-16">n8n Automation: Buat Sistem IoT Kirim WA/Email Otomatis</a> <a href="#course-17">IFTTT-Style IoT Automation: Buat A → B Action dengan Mudah</a> <a href="#course-18">Low-Code IoT: Bangun Sistem tanpa Coding Panjang</a>
+     <div class="mobile-submenu-category">
+      Cloud &amp; Deployment
+     </div><a href="#course-19">Cloud IoT Basics: Kirim Data ke Cloud dalam 1 Jam</a> <a href="#course-20">Deploy IoT to Cloud: Dari ESP32 ke Server</a> <a href="#course-21">Mini Course: API &amp; Webhooks untuk IoT</a>
+     <div class="mobile-submenu-category">
+      Project-Based Mini Courses
+     </div><a href="#course-22">Smart Room in 1 Hour: IoT untuk Rumah Pintar Mini</a> <a href="#course-23">Smart Farming Starter: Monitoring Tanaman Otomatis</a> <a href="#course-24">Weather Station Mini Course</a> <a href="#course-25">IoT Alert System: Buzzer, WA Notification, Dashboard</a>
+    </div>
+   </div><!-- Ecosystem Links -->
+   <div class="mobile-ecosystem">
+    <div class="mobile-ecosystem-label" id="mobile-ecosystem-label">
+     Ecosystem:
+    </div>
+    <div class="mobile-ecosystem-links"><a href="#store" target="_blank" rel="noopener noreferrer">Ichibot Store</a> <a href="#robotics" target="_blank" rel="noopener noreferrer">Robotics &amp; STEAM</a> <a href="#industrial" target="_blank" rel="noopener noreferrer">Industrial Solution</a>
+    </div>
+   </div><!-- Mobile Buttons -->
+   <div class="mobile-buttons"><button class="btn btn-icon btn-darkmode" id="darkmode-toggle-mobile" aria-label="Toggle dark mode"> <span class="icon-sun">☀️</span> <span class="icon-moon">🌙</span> </button> <button class="btn btn-primary">Konsultasi Gratis</button> <button class="btn btn-secondary">Masuk</button>
+   </div>
+  </nav><!-- Hero Section -->
+  <section class="hero">
+   <div class="grid-bg"></div>
+   <div class="hero-container">
+    <div class="hero-content">
+     <div class="hero-tag" id="hero-tag">
+      AI × IoT Learning Platform by Ichibot
+     </div>
+     <h1 class="hero-headline" id="hero-headline">Saatnya bikin AI benar-benar bekerja di perangkat IoT-mu.</h1>
+     <p class="hero-subheadline" id="hero-subheadline">Ichibot membantu pelajar, pengajar, dan industri memahami serta mengimplementasikan AI-IoT lewat program intensif, coaching, dan learning kit yang praktikal.</p>
+     <div class="hero-buttons"><button class="btn-hero-primary" id="primary-cta" onclick="scrollToSection('programs')">Lihat Program AI-IoT</button> <button class="btn-hero-secondary" id="secondary-cta" onclick="scrollToSection('kits-section')">Lihat Learning Kits</button>
+     </div>
+    </div>
+    <div class="hero-visual">
+     <div class="visual-container"><!-- Main Dashboard -->
+      <div class="dashboard-card main-dashboard">
+       <div class="dashboard-header">
+        <div class="dashboard-title"><span>����</span> AI-IoT Dashboard <span class="status-indicator"></span>
+        </div>
+       </div>
+       <div class="dashboard-content">
+        <div class="metric-card">
+         <div class="metric-label">
+          Active Devices
+         </div>
+         <div class="metric-value">
+          24
+         </div>
+        </div>
+        <div class="metric-card">
+         <div class="metric-label">
+          AI Models
+         </div>
+         <div class="metric-value">
+          8
+         </div>
+        </div>
+       </div>
+       <div class="chart-area">
+        <div class="chart-line"></div>
+       </div>
+      </div><!-- Floating IoT Node -->
+      <div class="float-card iot-node">
+       <div class="node-icon">
+        ��
+       </div>
+       <div class="node-label">
+        IoT Sensors
+       </div>
+       <div class="node-sublabel">
+        Real-time Monitoring
+       </div>
+      </div><!-- Floating AI Brain -->
+      <div class="float-card ai-brain">
+       <div class="brain-icon">
+        🧠
+       </div>
+       <div class="node-label">
+        AI Processing
+       </div>
+       <div class="node-sublabel">
+        Smart Detection
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- What You Can Do Section -->
+  <section class="capabilities-section">
+   <div class="capabilities-container">
+    <h2 class="capabilities-headline" id="capabilities-headline">What You Can Do with Ichibot</h2>
+    <p class="capabilities-subheadline" id="capabilities-subheadline">Pilih cara belajar AI-IoT yang sesuai dengan kebutuhan Anda.</p>
+    <div class="capabilities-grid"><!-- Card 1: Bootcamp Program -->
+     <div class="capability-card">
+      <div class="capability-icon">
+       <div class="bootcamp-icon">
+        <div class="bootcamp-stage"></div>
+        <div class="bootcamp-people">
+         <div class="bootcamp-person">
+          <div class="person-head"></div>
+          <div class="person-body"></div>
+         </div>
+         <div class="bootcamp-person">
+          <div class="person-head"></div>
+          <div class="person-body"></div>
+         </div>
+         <div class="bootcamp-person">
+          <div class="person-head"></div>
+          <div class="person-body"></div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <h3 class="capability-title" id="capability-bootcamp-title">Bootcamp Program</h3>
+      <p class="capability-description" id="capability-bootcamp-desc">Pelatihan intensif AI-IoT untuk industri, guru &amp; akademisi, serta developer profesional.</p><button class="capability-cta" onclick="scrollToSection('programs')">Lihat Program</button>
+     </div><!-- Card 2: Training Kit -->
+     <div class="capability-card">
+      <div class="capability-icon">
+       <div class="kit-icon">
+        <div class="kit-box"></div>
+        <div class="kit-components">
+         <div class="kit-component"></div>
+         <div class="kit-component"></div>
+         <div class="kit-component"></div>
+        </div>
+       </div>
+      </div>
+      <h3 class="capability-title" id="capability-kit-title">Training Kit</h3>
+      <p class="capability-description" id="capability-kit-desc">Perangkat belajar AI-IoT lengkap dari tingkat pemula hingga industri, termasuk Lab Package.</p><button class="capability-cta" onclick="scrollToSection('kits-section')">Lihat Training Kit</button>
+     </div><!-- Card 3: Mini Course -->
+     <div class="capability-card">
+      <div class="capability-icon">
+       <div class="course-icon">
+        <div class="course-play-circle">
+         <div class="course-play-triangle"></div>
+        </div>
+        <div class="course-curriculum">
+         <div class="course-line"></div>
+         <div class="course-line"></div>
+         <div class="course-line"></div>
+        </div>
+       </div>
+      </div>
+      <h3 class="capability-title" id="capability-course-title">Mini Course</h3>
+      <p class="capability-description" id="capability-course-desc">Kursus singkat 30-90 menit untuk skill spesifik AI-IoT, belajar kapan saja sesuai kebutuhanmu.</p><button class="capability-cta" onclick="scrollToSection('mini-courses-section')">Lihat Mini Courses</button>
+     </div>
+    </div>
+   </div>
+  </section><!-- Trusted By Section -->
+  <section class="trusted-section">
+   <div class="trusted-container">
+    <h2 class="trusted-headline" id="trusted-headline">Trusted By Leading Schools &amp; Companies</h2>
+    <p class="trusted-subheadline" id="trusted-subheadline">Perusahaan, sekolah, dan kampus yang telah mempercayai Ichibot untuk pelatihan AI-IoT, robotics, dan automation.</p>
+    <div class="logos-wrapper"><!-- Row 1 - Companies (Slide Left) -->
+     <div class="logo-row logo-row-1">
+      <div class="logo-item">
+       <div class="logo-box logo-pertamina">
+        Pertamina
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-toyota">
+        Toyota
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-bca">
+        BCA
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-kai">
+        KAI
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-johnson">
+        Johnson Controls
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-asperio">
+        Asperio
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-kuanta">
+        Kuanta
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-docmedika">
+        Doc Medika
+       </div>
+      </div><!-- Duplicate for seamless loop -->
+      <div class="logo-item">
+       <div class="logo-box logo-pertamina">
+        Pertamina
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-toyota">
+        Toyota
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-bca">
+        BCA
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-kai">
+        KAI
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-johnson">
+        Johnson Controls
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-asperio">
+        Asperio
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-kuanta">
+        Kuanta
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-docmedika">
+        Doc Medika
+       </div>
+      </div>
+     </div><!-- Row 2 - Schools (Slide Right) -->
+     <div class="logo-row logo-row-2">
+      <div class="logo-item">
+       <div class="logo-box logo-smk2">
+        SMK N 2 Yogyakarta
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-telkom">
+        SMK Telkom Malang
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-muhammadiyah">
+        SMK Muhammadiyah
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-smkn4">
+        SMKN 4 Jakarta
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-poltek">
+        Politeknik Negeri
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-its">
+        ITS Surabaya
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-ugm">
+        UGM
+       </div>
+      </div><!-- Duplicate for seamless loop -->
+      <div class="logo-item">
+       <div class="logo-box logo-smk2">
+        SMK N 2 Yogyakarta
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-telkom">
+        SMK Telkom Malang
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-muhammadiyah">
+        SMK Muhammadiyah
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-smkn4">
+        SMKN 4 Jakarta
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-poltek">
+        Politeknik Negeri
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-its">
+        ITS Surabaya
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-ugm">
+        UGM
+       </div>
+      </div>
+     </div><!-- Row 3 - Mixed (Slide Left) -->
+     <div class="logo-row logo-row-3">
+      <div class="logo-item">
+       <div class="logo-box logo-schneider">
+        Schneider Electric
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-unair">
+        Unair
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-itb">
+        ITB
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-telkomsel">
+        Telkomsel
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-pln">
+        PLN
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-smkn1">
+        SMKN 1 Surabaya
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-ui">
+        Universitas Indonesia
+       </div>
+      </div><!-- Duplicate for seamless loop -->
+      <div class="logo-item">
+       <div class="logo-box logo-schneider">
+        Schneider Electric
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-unair">
+        Unair
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-itb">
+        ITB
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-telkomsel">
+        Telkomsel
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-pln">
+        PLN
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-smkn1">
+        SMKN 1 Surabaya
+       </div>
+      </div>
+      <div class="logo-item">
+       <div class="logo-box logo-ui">
+        Universitas Indonesia
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Our Programs Section -->
+  <section class="programs-section" id="programs">
+   <div class="programs-container">
+    <h2 class="programs-headline" id="programs-headline">Our Programs</h2>
+    <p class="programs-subheadline" id="programs-subheadline">Pelatihan intensif AI-IoT untuk industri, pendidik, dan developer profesional.</p>
+    <div class="programs-list"><!-- Program Banners -->
+     <div class="programs-banners"><!-- Program Banner 1: Industrial -->
+      <div class="program-banner">
+       <div class="program-content"><span class="program-badge">🏭 Untuk Industri</span>
+        <h3 class="program-title" id="program-title-1">Industrial AI-IoT Bootcamp + Coaching</h3>
+        <p class="program-description" id="program-desc-1">Pelatihan IoT industri dan pendampingan PoC selama 4��12 minggu.</p>
+       </div><button class="program-cta">Lihat Detail</button>
+      </div><!-- Program Banner 2: Training of Trainer -->
+      <div class="program-banner">
+       <div class="program-content"><span class="program-badge">👨����🏫 Untuk Guru &amp; Dosen</span>
+        <h3 class="program-title" id="program-title-2">AI-IoT Training of Trainer Bootcamp</h3>
+        <p class="program-description" id="program-desc-2">Kurikulum siap ajar dan praktikum untuk guru &amp; dosen.</p>
+       </div><button class="program-cta">Lihat Detail</button>
+      </div><!-- Program Banner 3: Developer -->
+      <div class="program-banner">
+       <div class="program-content"><span class="program-badge">💻 Untuk Developer</span>
+        <h3 class="program-title" id="program-title-3">AI-IoT Developer Bootcamp</h3>
+        <p class="program-description" id="program-desc-3">Program 4–8 minggu untuk membangun project AI-IoT end-to-end.</p>
+       </div><button class="program-cta">Lihat Detail</button>
+      </div><!-- Program Banner 4: Customized -->
+      <div class="program-banner">
+       <div class="program-content"><span class="program-badge">⚙️ Custom untuk Anda</span>
+        <h3 class="program-title" id="program-title-4">Customized Bootcamp</h3>
+        <p class="program-description" id="program-desc-4">Program yang dibuat sesuai kebutuhan sekolah, kampus, industri, atau komunitas.</p>
+       </div><button class="program-cta">Lihat Detail</button>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Training Kits Section -->
+  <section class="kits-section" id="kits-section">
+   <div class="kits-container">
+    <h2 class="kits-headline" id="kits-headline">AI-IoT Training Kits &amp; Smart Lab Package</h2>
+    <p class="kits-subheadline" id="kits-subheadline">Perangkat belajar AI-IoT untuk pemula, kampus, hingga kebutuhan industri ��� lengkap dengan opsi paket lab siap pakai.</p><!-- Kit Cards Grid -->
+    <div class="kit-cards-grid"><!-- Starter Kit -->
+     <div class="kit-card">
+      <div class="kit-icon-wrapper"><img src="https://i.imgur.com/XhJJ8w4.jpg" alt="AI-IoT Starter Kit" class="kit-image" onerror="this.style.display='none'; this.alt='Image failed to load';">
+      </div>
+      <div class="kit-badge" id="kit-badge-1">
+       Untuk pemula &amp; pelajar SMA/SMK
+      </div>
+      <h3 class="kit-title" id="kit-title-1">AI-IoT Starter Kit</h3>
+      <p class="kit-description" id="kit-desc-1">Paket dasar untuk mulai belajar IoT dan AI dengan sensor sederhana, board pemula, dan proyek mini.</p>
+      <ul class="kit-features">
+       <li id="kit-feature-1-1">ESP32 beginner board</li>
+       <li id="kit-feature-1-2">Sensor dasar (suhu, cahaya, jarak)</li>
+       <li id="kit-feature-1-3">Modul belajar 6-8 pertemuan</li>
+      </ul><button class="kit-cta" id="kit-cta-1">Lihat Detail Starter Kit</button>
+     </div><!-- Campus Kit -->
+     <div class="kit-card">
+      <div class="kit-icon-wrapper"><img src="https://imgur.com/WQoNicG.jpg" alt="AI-IoT Educational Kit" class="kit-image" onerror="this.style.display='none'; this.alt='Image failed to load';">
+      </div>
+      <div class="kit-badge" id="kit-badge-2">
+       Untuk kampus, politeknik, &amp; SMK tingkat lanjut
+      </div>
+      <h3 class="kit-title" id="kit-title-2">AI-IoT Educational Kit (Raspberry Pi Edition)</h3>
+      <p class="kit-description" id="kit-desc-2">Kit menengah berbasis Raspberry Pi untuk praktikum IoT-AI, Tugas Akhir, dan proyek riset.</p>
+      <ul class="kit-features">
+       <li id="kit-feature-2-1">Raspberry Pi + kamera AI</li>
+       <li id="kit-feature-2-2">Sensor lengkap &amp; dashboard IoT</li>
+       <li id="kit-feature-2-3">Template project &amp; modul praktikum</li>
+      </ul><button class="kit-cta" id="kit-cta-2">Lihat Detail Campus Kit</button>
+     </div><!-- Industrial Kit -->
+     <div class="kit-card">
+      <div class="kit-icon-wrapper"><img src="https://imgur.com/uYoXfum.jpg" alt="Industrial AI-IoT Kit" class="kit-image" onerror="this.style.display='none'; this.alt='Image failed to load';">
+      </div>
+      <div class="kit-badge" id="kit-badge-3">
+       Untuk PoC industri &amp; UKM manufaktur
+      </div>
+      <h3 class="kit-title" id="kit-title-3">Industrial AI-IoT Kit</h3>
+      <p class="kit-description" id="kit-desc-3">Paket perangkat industrial-grade untuk PoC monitoring energi, mesin, dan AI vision di lingkungan industri.</p>
+      <ul class="kit-features">
+       <li id="kit-feature-3-1">Industrial gateway / controller</li>
+       <li id="kit-feature-3-2">Sensor Modbus &amp; industrial I/O</li>
+       <li id="kit-feature-3-3">Template dashboard &amp; PoC project</li>
+      </ul><button class="kit-cta" id="kit-cta-3">Lihat Detail Industrial Kit</button>
+     </div>
+    </div><!-- Smart Lab Package Banner -->
+    <div class="lab-package-banner">
+     <div class="lab-package-content">
+      <div class="lab-package-left"><span class="lab-package-badge" id="lab-badge">Untuk Sekolah, Kampus, &amp; BLK</span>
+       <h3 class="lab-package-title" id="lab-title">AI-IoT Lab Package</h3>
+       <p class="lab-package-description" id="lab-desc">Paket lengkap berisi beberapa Training Kits, kurikulum praktikum, dan Training of Trainer untuk membangun Lab AI-IoT siap pakai.</p>
+       <ul class="lab-package-features">
+        <li id="lab-feature-1">Bundling Starter/Campus/Industrial Kits</li>
+        <li id="lab-feature-2">Kurikulum dan modul praktikum siap ajar</li>
+        <li id="lab-feature-3">ToT guru/dosen/instruktur</li>
+        <li id="lab-feature-4">Pendampingan implementasi lab</li>
+       </ul><button class="lab-package-cta" id="lab-cta">Lihat Paket Lab Lengkap</button>
+      </div>
+      <div class="lab-package-visual">
+       <div class="lab-illustration"><img src="https://imgur.com/Uo7Seso.jpg" alt="AI-IoT Smart Lab Package" style="width: 120%; height: auto; border-radius: 16px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1); margin-left: -10%;" onerror="this.style.display='none'; this.alt='Image failed to load';">
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Mini Courses Section -->
+  <section class="mini-courses-section" id="mini-courses-section">
+   <div class="mini-courses-container">
+    <h2 class="mini-courses-headline" id="mini-courses-headline">Mini Courses</h2>
+    <p class="mini-courses-subheadline" id="mini-courses-subheadline">Bangun skill AI-IoT dengan kursus singkat berdurasi 30–90 menit, lengkap dengan video, file project, dan panduan praktikal.</p><!-- Free Course Highlight -->
+    <div class="free-course-highlight">
+     <div class="free-course-content"><span class="free-badge">FREE COURSE</span>
+      <h3 class="free-course-title" id="free-course-title">Intro to IoT: Hubungkan Perangkatmu ke Internet dalam 30 Menit</h3>
+      <p class="free-course-description" id="free-course-description">Belajar dasar IoT tanpa coding rumit. Cocok untuk pemula total.</p>
+      <ul class="free-course-features">
+       <li id="free-feature-1">Tanpa coding rumit</li>
+       <li id="free-feature-2">Project langsung jadi</li>
+       <li id="free-feature-3">Cocok untuk pemula total</li>
+      </ul><button class="free-course-cta">Mulai Gratis</button>
+     </div>
+     <div class="free-course-visual">
+      <div class="free-visual-container">
+       <div class="iot-board-icon">
+        <div class="board-chip"></div>
+        <div class="board-pins"></div>
+        <div class="board-connection"></div>
+       </div>
+       <div class="connection-waves">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+       </div>
+      </div>
+     </div>
+    </div><!-- Carousel -->
+    <div class="courses-carousel-wrapper">
+     <h3 class="carousel-section-title">Favourite Mini Courses</h3>
+     <div class="carousel-nav"><button class="carousel-btn carousel-prev" id="carousel-prev" aria-label="Previous">‹</button> <button class="carousel-btn carousel-next" id="carousel-next" aria-label="Next">›</button>
+     </div>
+     <div class="courses-carousel" id="courses-carousel"><!-- Slide 1 -->
+      <div class="course-card">
+       <div class="course-image"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&amp;h=400&amp;fit=crop" alt="Node-RED Flow" class="course-img" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)';"> <span class="course-badge">FAVOURITE</span> <span class="lifetime-badge">�� Lifetime Access</span> <span class="course-price">Rp 49.000</span>
+       </div>
+       <div class="course-info">
+        <h4 class="course-title">Node-RED for Beginners</h4>
+        <p class="course-subtitle">Automasi IoT tanpa coding panjang.</p><button class="course-cta">Lihat Course</button>
+       </div>
+      </div><!-- Slide 2 -->
+      <div class="course-card">
+       <div class="course-image"><img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?w=600&amp;h=400&amp;fit=crop" alt="AI Vision" class="course-img" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)';"> <span class="course-badge">FAVOURITE</span> <span class="lifetime-badge">⏳ Lifetime Access</span> <span class="course-price">Rp 59.000</span>
+       </div>
+       <div class="course-info">
+        <h4 class="course-title">AI Vision Basics</h4>
+        <p class="course-subtitle">Deteksi objek sederhana dalam 1 jam.</p><button class="course-cta">Lihat Course</button>
+       </div>
+      </div><!-- Slide 3 -->
+      <div class="course-card">
+       <div class="course-image"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&amp;h=400&amp;fit=crop" alt="Dashboard" class="course-img" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)';"> <span class="course-badge">FAVOURITE</span> <span class="lifetime-badge">⏳ Lifetime Access</span> <span class="course-price">Rp 49.000</span>
+       </div>
+       <div class="course-info">
+        <h4 class="course-title">ThingsBoard Mini Dashboard</h4>
+        <p class="course-subtitle">Bangun dashboard IoT profesional.</p><button class="course-cta">Lihat Course</button>
+       </div>
+      </div><!-- Slide 4 -->
+      <div class="course-card">
+       <div class="course-image"><img src="https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=600&amp;h=400&amp;fit=crop" alt="Automation" class="course-img" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)';"> <span class="course-badge">FAVOURITE</span> <span class="lifetime-badge">⏳ Lifetime Access</span> <span class="course-price">Rp 59.000</span>
+       </div>
+       <div class="course-info">
+        <h4 class="course-title">n8n Automation for IoT</h4>
+        <p class="course-subtitle">Buat notifikasi otomatis dari data IoT.</p><button class="course-cta">Lihat Course</button>
+       </div>
+      </div><!-- Slide 5 -->
+      <div class="course-card">
+       <div class="course-image"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&amp;h=400&amp;fit=crop" alt="Anomaly Detection" class="course-img" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)';"> <span class="course-badge">FAVOURITE</span> <span class="lifetime-badge">⏳ Lifetime Access</span> <span class="course-price">Rp 79.000</span>
+       </div>
+       <div class="course-info">
+        <h4 class="course-title">AI Anomaly Detection Basics</h4>
+        <p class="course-subtitle">Kenali pola anomali dari data sensor IoT.</p><button class="course-cta">Lihat Course</button>
+       </div>
+      </div><!-- Slide 6 - CTA -->
+      <div class="course-card course-card-cta">
+       <div class="cta-blur-bg"></div>
+       <div class="cta-content">
+        <div class="cta-icon">
+         🚀
+        </div>
+        <h4 class="cta-title">Lihat Mini Courses Lainnya</h4>
+        <p class="cta-subtitle">Jelajahi koleksi lengkap kursus singkat AI-IoT.</p><button class="cta-button">Lihat Semua Mini Courses</button>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Testimonials Section -->
+  <section class="testimonials-section" id="testimonials-section">
+   <div class="testimonials-container">
+    <h2 class="testimonials-headline" id="testimonials-headline">What They Say About Ichibot</h2>
+    <p class="testimonials-subheadline" id="testimonials-subheadline">Cerita nyata dari peserta yang telah merasakan pembelajaran AI-IoT Ichibot.</p>
+    <div class="testimonials-grid"><!-- Testimonial 1 -->
+     <div class="testimonial-card">
+      <div class="testimonial-quote-icon">
+       "
+      </div>
+      <p class="testimonial-text" id="testimonial-text-1">"Pelatihan IoT-AI Ichibot sangat praktikal. Siswa kami langsung bisa membuat proyek nyata yang sebelumnya terlihat rumit."</p>
+      <div class="testimonial-author">
+       <div class="testimonial-photo">
+        👨��🏫
+       </div>
+       <div class="testimonial-info">
+        <div class="testimonial-name" id="testimonial-name-1">
+         Rizky Fernando
+        </div>
+        <div class="testimonial-position" id="testimonial-position-1">
+         Instruktur SMK 2 Yogyakarta
+        </div>
+       </div>
+      </div>
+     </div><!-- Testimonial 2 -->
+     <div class="testimonial-card">
+      <div class="testimonial-quote-icon">
+       "
+      </div>
+      <p class="testimonial-text" id="testimonial-text-2">"Saya akhirnya memahami implementasi AI untuk deteksi anomali sensor. Pendampingannya jelas dan aplikatif."</p>
+      <div class="testimonial-author">
+       <div class="testimonial-photo">
+        👩‍💼
+       </div>
+       <div class="testimonial-info">
+        <div class="testimonial-name" id="testimonial-name-2">
+         Ayu Pradipta
+        </div>
+        <div class="testimonial-position" id="testimonial-position-2">
+         Automation Engineer, Industri Manufaktur
+        </div>
+       </div>
+      </div>
+     </div><!-- Testimonial 3 -->
+     <div class="testimonial-card">
+      <div class="testimonial-quote-icon">
+       "
+      </div>
+      <p class="testimonial-text" id="testimonial-text-3">"Mini course Ichibot sederhana, to the point, dan beneran membantu saya menyelesaikan proyek akhir IoT."</p>
+      <div class="testimonial-author">
+       <div class="testimonial-photo">
+        👨‍🎓
+       </div>
+       <div class="testimonial-info">
+        <div class="testimonial-name" id="testimonial-name-3">
+         Samuel Lim
+        </div>
+        <div class="testimonial-position" id="testimonial-position-3">
+         Mahasiswa Teknik Informatika
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Final CTA Section -->
+  <section class="final-cta-section">
+   <div class="final-cta-background">
+    <div class="cta-circuit-pattern"></div>
+    <div class="cta-glow-orb cta-glow-1"></div>
+    <div class="cta-glow-orb cta-glow-2"></div>
+   </div>
+   <div class="final-cta-container">
+    <h2 class="final-cta-headline" id="final-cta-headline">Siap Bikin AI Bekerja di Perangkat IoT-mu?</h2>
+    <p class="final-cta-subheadline" id="final-cta-subheadline">Mulai perjalananmu di dunia AI-IoT dengan pendampingan praktikal dari Ichibot — dari pemula hingga level industri.</p>
+    <div class="final-cta-buttons"><button class="final-cta-primary" id="final-cta-primary-btn">Konsultasi Gratis Sekarang</button> <button class="final-cta-secondary" id="final-cta-secondary-btn">Lihat Semua Program AI-IoT</button>
+    </div>
+   </div>
+  </section><!-- Footer Section -->
+  <footer class="footer">
+   <div class="footer-container"><!-- Column 1: Brand & Identity -->
+    <div class="footer-column footer-brand">
+     <div class="footer-logo">
+      ICHIBOT
+     </div>
+     <div class="footer-tagline" id="footer-tagline">
+      AI × IoT Learning Platform of Indonesia
+     </div>
+     <p class="footer-description" id="footer-description">Platform edukasi AI-IoT untuk industri, sekolah, kampus, dan individu.</p>
+    </div><!-- Column 2: Contact & Location -->
+    <div class="footer-column">
+     <h4 class="footer-title" id="footer-contact-title">Contact Us</h4>
+     <ul class="footer-links footer-contact">
+      <li><span class="footer-icon">📍</span> <span id="footer-address">Jl. Dworowati No.11, RT.05/RW.35, Nglarang, Malangrejo, Kec. Ngemplak, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55584</span></li>
+      <li><span class="footer-icon">📞</span> <a href="tel:+628123456789" id="footer-phone">+62 812-3456-7890</a></li>
+      <li><span class="footer-icon">✉️</span> <a href="mailto:hello@ichibot.id" id="footer-email">hello@ichibot.id</a></li>
+      <li><span class="footer-icon">🌐</span> <a href="https://www.ichibot.id" target="_blank" rel="noopener noreferrer" id="footer-website">www.ichibot.id</a></li>
+     </ul>
+    </div><!-- Column 3: Quick Links -->
+    <div class="footer-column">
+     <h4 class="footer-title" id="footer-links-title">Quick Links</h4>
+     <ul class="footer-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#kits">Training Kits</a></li>
+      <li><a href="#courses">Mini Courses</a></li>
+      <li><a href="#showcase">Showcase</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#contact">Contact</a></li>
+     </ul>
+    </div><!-- Column 4: Other Services -->
+    <div class="footer-column">
+     <h4 class="footer-title" id="footer-services-title">Other Services</h4>
+     <ul class="footer-links footer-services">
+      <li><span class="service-icon">🛒</span>
+       <div class="service-info"><a href="#store" target="_blank" rel="noopener noreferrer">Ichibot Store</a> <span class="service-desc">IoT Part Supplier</span>
+       </div></li>
+      <li><span class="service-icon">🤖</span>
+       <div class="service-info"><a href="#robotics" target="_blank" rel="noopener noreferrer">Ichibot Robotics</a> <span class="service-desc">Robotic &amp; STEAM Education</span>
+       </div></li>
+      <li><span class="service-icon">⚙️</span>
+       <div class="service-info"><a href="#enterprise" target="_blank" rel="noopener noreferrer">Ichibot Enterprise</a> <span class="service-desc">Industrial IoT Solution</span>
+       </div></li>
+     </ul>
+    </div>
+   </div><!-- Footer Bottom Bar -->
+   <div class="footer-bottom">
+    <div class="footer-bottom-container">
+     <p class="footer-copyright" id="footer-copyright">© 2025 Ichibot. All Rights Reserved.</p>
+     <div class="footer-legal"><a href="#terms">Terms &amp; Conditions</a> <span class="footer-separator">•</span> <a href="#privacy">Privacy Policy</a>
+     </div>
+    </div>
+   </div>
+  </footer>
+  <script>
+    const defaultConfig = {
+      brand_name: "ICHIBOT",
+      ecosystem_label: "Ecosystem:",
+      hero_tag: "AI × IoT Learning Platform by Ichibot",
+      hero_headline: "Saatnya bikin AI benar-benar bekerja di perangkat IoT-mu.",
+      hero_subheadline: "Ichibot membantu pelajar, pengajar, dan industri memahami serta mengimplementasikan AI-IoT lewat program intensif, coaching, dan learning kit yang praktikal.",
+      primary_cta: "Lihat Program Bootcamp AI-IoT",
+      secondary_cta: "Lihat AI-IoT Training Kit",
+      capabilities_headline: "What You Can Do with Ichibot",
+      capabilities_subheadline: "Pilih cara belajar AI-IoT yang sesuai dengan kebutuhan Anda.",
+      capability_bootcamp_title: "Bootcamp Program",
+      capability_bootcamp_desc: "Pelatihan intensif AI-IoT untuk industri, guru & akademisi, serta developer profesional.",
+      capability_kit_title: "Training Kit",
+      capability_kit_desc: "Perangkat belajar AI-IoT lengkap dari tingkat pemula hingga industri, termasuk Lab Package.",
+      capability_course_title: "Mini Course",
+      capability_course_desc: "Kursus singkat 30-90 menit untuk skill spesifik AI-IoT, belajar kapan saja sesuai kebutuhanmu.",
+      programs_headline: "Our Programs",
+      programs_subheadline: "Pelatihan intensif AI-IoT untuk industri, guru & akademisi, serta developer profesional.",
+      program_title_1: "Industrial AI-IoT Bootcamp + Coaching",
+      program_desc_1: "Pelatihan IoT industri dan pendampingan PoC selama 4–12 minggu.",
+      program_title_2: "AI-IoT Training of Trainer Bootcamp",
+      program_desc_2: "Kurikulum siap ajar dan praktikum untuk guru & dosen.",
+      program_title_3: "AI-IoT Developer Bootcamp",
+      program_desc_3: "Program 4–8 minggu untuk membangun project AI-IoT end-to-end.",
+      program_title_4: "Customized Bootcamp",
+      program_desc_4: "Program yang dibuat sesuai kebutuhan sekolah, kampus, industri, atau komunitas.",
+      background_color: "#f8f9ff",
+      surface_color: "#ffffff",
+      text_color: "#1a1a2e",
+      primary_action_color: "#0066ff",
+      accent_color: "#6366f1"
+    };
+
+    let config = { ...defaultConfig };
+
+    async function onConfigChange(newConfig) {
+      config = { ...config, ...newConfig };
+
+      // Update text content
+      const brandElement = document.getElementById('brand-name');
+      if (brandElement) brandElement.textContent = config.brand_name || defaultConfig.brand_name;
+
+      const ecosystemElement = document.getElementById('ecosystem-label');
+      if (ecosystemElement) ecosystemElement.textContent = config.ecosystem_label || defaultConfig.ecosystem_label;
+
+      const heroTagElement = document.getElementById('hero-tag');
+      if (heroTagElement) heroTagElement.textContent = config.hero_tag || defaultConfig.hero_tag;
+
+      const heroHeadlineElement = document.getElementById('hero-headline');
+      if (heroHeadlineElement) heroHeadlineElement.textContent = config.hero_headline || defaultConfig.hero_headline;
+
+      const heroSubheadlineElement = document.getElementById('hero-subheadline');
+      if (heroSubheadlineElement) heroSubheadlineElement.textContent = config.hero_subheadline || defaultConfig.hero_subheadline;
+
+      const primaryCtaElement = document.getElementById('primary-cta');
+      if (primaryCtaElement) primaryCtaElement.textContent = config.primary_cta || defaultConfig.primary_cta;
+
+      const secondaryCtaElement = document.getElementById('secondary-cta');
+      if (secondaryCtaElement) secondaryCtaElement.textContent = config.secondary_cta || defaultConfig.secondary_cta;
+
+      // Update capabilities section
+      const capabilitiesHeadlineElement = document.getElementById('capabilities-headline');
+      if (capabilitiesHeadlineElement) capabilitiesHeadlineElement.textContent = config.capabilities_headline || defaultConfig.capabilities_headline;
+
+      const capabilitiesSubheadlineElement = document.getElementById('capabilities-subheadline');
+      if (capabilitiesSubheadlineElement) capabilitiesSubheadlineElement.textContent = config.capabilities_subheadline || defaultConfig.capabilities_subheadline;
+
+      const bootcampTitleElement = document.getElementById('capability-bootcamp-title');
+      if (bootcampTitleElement) bootcampTitleElement.textContent = config.capability_bootcamp_title || defaultConfig.capability_bootcamp_title;
+
+      const bootcampDescElement = document.getElementById('capability-bootcamp-desc');
+      if (bootcampDescElement) bootcampDescElement.textContent = config.capability_bootcamp_desc || defaultConfig.capability_bootcamp_desc;
+
+      const kitTitleElement = document.getElementById('capability-kit-title');
+      if (kitTitleElement) kitTitleElement.textContent = config.capability_kit_title || defaultConfig.capability_kit_title;
+
+      const kitDescElement = document.getElementById('capability-kit-desc');
+      if (kitDescElement) kitDescElement.textContent = config.capability_kit_desc || defaultConfig.capability_kit_desc;
+
+      const courseTitleElement = document.getElementById('capability-course-title');
+      if (courseTitleElement) courseTitleElement.textContent = config.capability_course_title || defaultConfig.capability_course_title;
+
+      const courseDescElement = document.getElementById('capability-course-desc');
+      if (courseDescElement) courseDescElement.textContent = config.capability_course_desc || defaultConfig.capability_course_desc;
+
+      // Update programs section
+      const programsHeadlineElement = document.getElementById('programs-headline');
+      if (programsHeadlineElement) programsHeadlineElement.textContent = config.programs_headline || defaultConfig.programs_headline;
+
+      const programsSubheadlineElement = document.getElementById('programs-subheadline');
+      if (programsSubheadlineElement) programsSubheadlineElement.textContent = config.programs_subheadline || defaultConfig.programs_subheadline;
+
+      const programTitle1Element = document.getElementById('program-title-1');
+      if (programTitle1Element) programTitle1Element.textContent = config.program_title_1 || defaultConfig.program_title_1;
+
+      const programDesc1Element = document.getElementById('program-desc-1');
+      if (programDesc1Element) programDesc1Element.textContent = config.program_desc_1 || defaultConfig.program_desc_1;
+
+      const programTitle2Element = document.getElementById('program-title-2');
+      if (programTitle2Element) programTitle2Element.textContent = config.program_title_2 || defaultConfig.program_title_2;
+
+      const programDesc2Element = document.getElementById('program-desc-2');
+      if (programDesc2Element) programDesc2Element.textContent = config.program_desc_2 || defaultConfig.program_desc_2;
+
+      const programTitle3Element = document.getElementById('program-title-3');
+      if (programTitle3Element) programTitle3Element.textContent = config.program_title_3 || defaultConfig.program_title_3;
+
+      const programDesc3Element = document.getElementById('program-desc-3');
+      if (programDesc3Element) programDesc3Element.textContent = config.program_desc_3 || defaultConfig.program_desc_3;
+
+      const programTitle4Element = document.getElementById('program-title-4');
+      if (programTitle4Element) programTitle4Element.textContent = config.program_title_4 || defaultConfig.program_title_4;
+
+      const programDesc4Element = document.getElementById('program-desc-4');
+      if (programDesc4Element) programDesc4Element.textContent = config.program_desc_4 || defaultConfig.program_desc_4;
+
+      // Update colors (only if not in dark mode)
+      if (!document.body.classList.contains('dark-mode')) {
+        const bgColor = config.background_color || defaultConfig.background_color;
+        const surfaceColor = config.surface_color || defaultConfig.surface_color;
+        const textColor = config.text_color || defaultConfig.text_color;
+        const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
+        const accentColor = config.accent_color || defaultConfig.accent_color;
+
+        const heroElement = document.querySelector('.hero');
+        if (heroElement) heroElement.style.background = `linear-gradient(180deg, ${bgColor} 0%, ${surfaceColor} 100%)`;
+        
+        const headerElement = document.querySelector('.header');
+        if (headerElement) headerElement.style.background = surfaceColor;
+        
+        const heroHeadlineStyleElement = document.querySelector('.hero-headline');
+        if (heroHeadlineStyleElement) heroHeadlineStyleElement.style.color = textColor;
+        
+        document.querySelectorAll('.btn-primary, .btn-hero-primary').forEach(btn => {
+          btn.style.background = `linear-gradient(135deg, ${primaryColor}, ${accentColor})`;
+        });
+
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+          link.style.color = textColor;
+        });
+
+        document.querySelectorAll('.capability-icon').forEach(icon => {
+          icon.style.color = primaryColor;
+        });
+      }
+    }
+
+    function mapToCapabilities(cfg) {
+      return {
+        recolorables: [
+          {
+            get: () => cfg.background_color || defaultConfig.background_color,
+            set: (value) => {
+              cfg.background_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ background_color: value });
+            }
+          },
+          {
+            get: () => cfg.surface_color || defaultConfig.surface_color,
+            set: (value) => {
+              cfg.surface_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ surface_color: value });
+            }
+          },
+          {
+            get: () => cfg.text_color || defaultConfig.text_color,
+            set: (value) => {
+              cfg.text_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => cfg.primary_action_color || defaultConfig.primary_action_color,
+            set: (value) => {
+              cfg.primary_action_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ primary_action_color: value });
+            }
+          },
+          {
+            get: () => cfg.accent_color || defaultConfig.accent_color,
+            set: (value) => {
+              cfg.accent_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ accent_color: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
+    }
+
+    function mapToEditPanelValues(cfg) {
+      return new Map([
+        ["brand_name", cfg.brand_name || defaultConfig.brand_name],
+        ["ecosystem_label", cfg.ecosystem_label || defaultConfig.ecosystem_label],
+        ["hero_tag", cfg.hero_tag || defaultConfig.hero_tag],
+        ["hero_headline", cfg.hero_headline || defaultConfig.hero_headline],
+        ["hero_subheadline", cfg.hero_subheadline || defaultConfig.hero_subheadline],
+        ["primary_cta", cfg.primary_cta || defaultConfig.primary_cta],
+        ["secondary_cta", cfg.secondary_cta || defaultConfig.secondary_cta],
+        ["capabilities_headline", cfg.capabilities_headline || defaultConfig.capabilities_headline],
+        ["capabilities_subheadline", cfg.capabilities_subheadline || defaultConfig.capabilities_subheadline],
+        ["capability_bootcamp_title", cfg.capability_bootcamp_title || defaultConfig.capability_bootcamp_title],
+        ["capability_bootcamp_desc", cfg.capability_bootcamp_desc || defaultConfig.capability_bootcamp_desc],
+        ["capability_kit_title", cfg.capability_kit_title || defaultConfig.capability_kit_title],
+        ["capability_kit_desc", cfg.capability_kit_desc || defaultConfig.capability_kit_desc],
+        ["capability_course_title", cfg.capability_course_title || defaultConfig.capability_course_title],
+        ["capability_course_desc", cfg.capability_course_desc || defaultConfig.capability_course_desc],
+        ["programs_headline", cfg.programs_headline || defaultConfig.programs_headline],
+        ["programs_subheadline", cfg.programs_subheadline || defaultConfig.programs_subheadline],
+        ["program_title_1", cfg.program_title_1 || defaultConfig.program_title_1],
+        ["program_desc_1", cfg.program_desc_1 || defaultConfig.program_desc_1],
+        ["program_title_2", cfg.program_title_2 || defaultConfig.program_title_2],
+        ["program_desc_2", cfg.program_desc_2 || defaultConfig.program_desc_2],
+        ["program_title_3", cfg.program_title_3 || defaultConfig.program_title_3],
+        ["program_desc_3", cfg.program_desc_3 || defaultConfig.program_desc_3],
+        ["program_title_4", cfg.program_title_4 || defaultConfig.program_title_4],
+        ["program_desc_4", cfg.program_desc_4 || defaultConfig.program_desc_4]
+      ]);
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+    // Initial render
+    onConfigChange(defaultConfig);
+
+    // Smooth scroll functionality
+    function scrollToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        const headerHeight = 75;
+        const sectionTop = section.offsetTop - headerHeight;
+        window.scrollTo({
+          top: sectionTop,
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    // Make scrollToSection available globally
+    window.scrollToSection = scrollToSection;
+
+    // Dark mode functionality
+    const darkmodeToggle = document.getElementById('darkmode-toggle');
+    const darkmodeToggleMobile = document.getElementById('darkmode-toggle-mobile');
+
+    // Check for saved dark mode preference
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    if (isDarkMode) {
+      document.body.classList.add('dark-mode');
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      const isNowDark = document.body.classList.contains('dark-mode');
+      localStorage.setItem('darkMode', isNowDark);
+    }
+
+    if (darkmodeToggle) {
+      darkmodeToggle.addEventListener('click', toggleDarkMode);
+    }
+
+    if (darkmodeToggleMobile) {
+      darkmodeToggleMobile.addEventListener('click', toggleDarkMode);
+    }
+
+    // Mobile menu functionality
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileNavMenu = document.getElementById('mobile-nav-menu');
+    const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+
+    function openMobileMenu() {
+      mobileMenuToggle.classList.add('active');
+      mobileNavMenu.classList.add('active');
+      mobileNavOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+      mobileMenuToggle.classList.remove('active');
+      mobileNavMenu.classList.remove('active');
+      mobileNavOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    mobileMenuToggle.addEventListener('click', function() {
+      if (mobileNavMenu.classList.contains('active')) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    });
+
+    mobileNavOverlay.addEventListener('click', closeMobileMenu);
+
+    // Submenu toggles
+    const submenuLinks = document.querySelectorAll('.mobile-nav-link[data-submenu]');
+    submenuLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const submenuId = 'submenu-' + this.getAttribute('data-submenu');
+        const submenu = document.getElementById(submenuId);
+        const arrow = this.querySelector('.mobile-nav-arrow');
+        
+        if (submenu.classList.contains('active')) {
+          submenu.classList.remove('active');
+          arrow.classList.remove('active');
+        } else {
+          // Close other submenus
+          document.querySelectorAll('.mobile-submenu').forEach(s => s.classList.remove('active'));
+          document.querySelectorAll('.mobile-nav-arrow').forEach(a => a.classList.remove('active'));
+          
+          submenu.classList.add('active');
+          arrow.classList.add('active');
+        }
+      });
+    });
+
+    // Close menu when clicking on submenu links
+    const submenuItems = document.querySelectorAll('.mobile-submenu a');
+    submenuItems.forEach(item => {
+      item.addEventListener('click', closeMobileMenu);
+    });
+
+    // Carousel functionality
+    const carousel = document.getElementById('courses-carousel');
+    const prevBtn = document.getElementById('carousel-prev');
+    const nextBtn = document.getElementById('carousel-next');
+
+    if (carousel && prevBtn && nextBtn) {
+      const scrollAmount = 368; // card width + gap
+
+      prevBtn.addEventListener('click', function() {
+        carousel.scrollBy({
+          left: -scrollAmount,
+          behavior: 'smooth'
+        });
+      });
+
+      nextBtn.addEventListener('click', function() {
+        carousel.scrollBy({
+          left: scrollAmount,
+          behavior: 'smooth'
+        });
+      });
+
+      // Update button states based on scroll position
+      function updateCarouselButtons() {
+        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+        const currentScroll = carousel.scrollLeft;
+
+        prevBtn.disabled = currentScroll <= 0;
+        nextBtn.disabled = currentScroll >= maxScroll - 10;
+      }
+
+      carousel.addEventListener('scroll', updateCarouselButtons);
+      updateCarouselButtons();
+
+      // Update on window resize
+      window.addEventListener('resize', updateCarouselButtons);
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a25c111104ca742',t:'MTc2Mzc4NjQ4My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
