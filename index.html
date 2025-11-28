@@ -493,34 +493,52 @@
     }
 
     .dropdown-menu-wide {
-      position: fixed;
-      /* Ubah dari absolute ke fixed */
-      top: 75px;
-      /* Sesuaikan dengan tinggi header kamu (75px) */
+      position: absolute;
+      top: 100%;
       left: 0;
-      width: 100%;
-      /* Gunakan 100% agar pas dengan lebar layar */
-      max-width: 100vw;
+      width: 900px;
+      /* Sesuai request 2 kolom tadi */
+      max-height: 90vw;
 
-      /* Style yang sudah ada biarkan saja */
+      /* --- PENTING: AGAR BISA SCROLL --- */
+      max-height: 70vh;
+      /* Batasi tinggi maks 70% dari layar laptop */
+      overflow-y: auto;
+      /* Munculkan scrollbar vertikal jika isi kepanjangan */
+      /* -------------------------------- */
+
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
       padding: 24px;
       box-sizing: border-box;
+      border: 1px solid rgba(0, 102, 255, 0.1);
+
+      transform: translateY(10px);
       opacity: 0;
       visibility: hidden;
       transition: all 0.3s ease;
-      z-index: 9999;
-      background: #ffffff;
-      /* Pastikan ada background color */
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-      /* Tambahan shadow biar cantik */
+      z-index: 1000;
+      margin-top: 16px;
     }
 
-    /* Pastikan style hover tetap jalan */
+    /* 2. Atur State Hover (Saat Kursor Diarahkan) */
     .nav-item:hover .dropdown-menu-wide {
       opacity: 1;
       visibility: visible;
-      /* Hapus transform translateY jika menggunakan fixed position agar tidak lompat */
-      transform: none;
+
+      /* Reset transform Y jadi 0 agar naik ke posisi aslinya */
+      transform: translateY(0);
+    }
+
+    /* 3. PASTIKAN Grid Kolom Kamu Sudah Benar (Cek juga bagian ini di CSS kamu) */
+    /* Ini memastikan isinya terbagi menjadi 3 kolom */
+    .dropdown-columns {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      /* Paksa 3 kolom dengan lebar sama */
+      gap: 32px;
+      /* Jarak antar kolom */
     }
 
 
@@ -549,21 +567,6 @@
       transform: translateY(0);
     } */
 
-
-
-
-    .dropdown-columns {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-    }
-
-    /* Default: 3 kolom */
-    .dropdown-columns {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-    }
 
     /* Turun ke 2 kolom untuk layar laptop normal (Macbook, 1366, 1440) */
     @media (max-width: 1400px) {
