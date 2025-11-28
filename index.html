@@ -3546,21 +3546,75 @@
       gap: 28px;
     }
 
+    /* --- PROGRAM BANNER STYLE BARU --- */
+
     .program-banner {
+      /* Style Lama (Warna & Border) Tetap Dipertahankan */
       background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
       border: 1.5px solid #e8e8f0;
       border-radius: 20px;
-      padding: 40px 48px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 36px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
       transition: all 0.4s ease;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+
+      /* PERUBAHAN UTAMA DI SINI (Layout) */
+      display: flex;
+      /* Ganti Grid jadi Flex agar bisa kiri-kanan */
+      padding: 0;
+      /* Hapus padding container agar gambar mentok pinggir */
+      align-items: stretch;
+      /* Tinggi gambar & teks sama rata */
+      gap: 0;
+      /* Gap diatur lewat padding wrapper teks */
     }
 
+    /* --- 1. Area Gambar (Kiri 30%) --- */
+    .program-image-container {
+      width: 30%;
+      /* Lebar fix 30% */
+      position: relative;
+      min-height: 240px;
+      /* Tinggi minimal agar gambar tidak gepeng */
+      flex-shrink: 0;
+    }
+
+    .program-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Gambar mengisi penuh area tanpa gepeng */
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      /* Di bawah garis hover */
+    }
+
+    /* --- 2. Area Teks & Tombol (Kanan 70%) --- */
+    .program-info-wrapper {
+      flex: 1;
+      /* Mengisi sisa ruang (70%) */
+      padding: 32px 40px;
+      /* Padding dipindah ke dalam sini */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 20px;
+      /* Jarak antar elemen teks */
+    }
+
+    .program-content {
+      width: 100%;
+    }
+
+    .program-cta {
+      margin-top: auto;
+      /* Dorong tombol ke bawah kalau konten sedikit */
+    }
+
+    /* --- 3. Efek Hover Lama (Garis Biru & Fade) --- */
     .program-banner::before {
       content: '';
       position: absolute;
@@ -3572,6 +3626,8 @@
       transform: scaleY(0);
       transform-origin: top;
       transition: transform 0.4s ease;
+      z-index: 10;
+      /* PENTING: Agar garis muncul di ATAS gambar */
     }
 
     .program-banner::after {
@@ -3584,8 +3640,11 @@
       background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.03));
       opacity: 0;
       transition: opacity 0.4s ease;
+      pointer-events: none;
+      /* Agar tidak mengganggu klik */
     }
 
+    /* State Hover */
     .program-banner:hover {
       transform: translateX(8px);
       box-shadow: 0 12px 40px rgba(0, 102, 255, 0.12);
@@ -3598,6 +3657,25 @@
 
     .program-banner:hover::after {
       opacity: 1;
+    }
+
+    /* --- 4. Responsif (Mobile) --- */
+    @media (max-width: 900px) {
+      .program-banner {
+        flex-direction: column;
+        /* Gambar di atas, teks di bawah */
+      }
+
+      .program-image-container {
+        width: 100%;
+        height: 200px;
+        /* Tinggi fix saat di HP */
+        min-height: auto;
+      }
+
+      .program-info-wrapper {
+        padding: 24px 32px;
+      }
     }
 
     .program-badge {
@@ -4088,6 +4166,98 @@
         padding: 32px 24px;
       }
     }
+
+    /* Styling untuk Harga di Bawah */
+    .course-price-tag {
+      font-size: 18px;
+      /* Ukuran font harga */
+      font-weight: 800;
+      /* Font tebal */
+      color: #1a1a2e;
+      /* Warna teks gelap */
+
+      /* Posisi & Jarak */
+      margin-top: 16px;
+      /* Jarak dari deskripsi di atasnya */
+      margin-bottom: 20px;
+      /* Jarak ke tombol di bawahnya */
+
+      /* Opsional: Kalau mau pakai background pill hitam kayak badge */
+      /* background: #f0f0f5;  */
+      /* padding: 8px 20px; */
+      /* border-radius: 50px; */
+      /* display: inline-block; */
+    }
+
+    /* Pastikan konten card rata tengah */
+    .course-info {
+      display: flex;
+      flex-direction: column;
+      /* align-items: center;  <-- Aktifkan ini kalau mau SEMUA teks rata tengah */
+      /* text-align: center;   <-- Aktifkan ini kalau mau SEMUA teks rata tengah */
+    }
+
+    /* Khusus harga rata kiri atau tengah? */
+    /* Kalau desainmu rata kiri, biarkan saja. Kalau mau rata tengah, tambahkan align-self: center di .course-price-tag */
+    /* Update Logo Box agar fleksibel untuk Gambar */
+    .logo-box {
+      min-width: 140px;
+      height: 80px;
+      /* Sedikit dipertinggi biar logo lega */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      border: 1.5px solid #e8e8f0;
+      border-radius: 12px;
+      padding: 12px 24px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+
+      /* Hapus background gradient lama per instansi, ganti putih bersih */
+      background: #ffffff !important;
+    }
+
+    /* Style untuk Image Logo */
+    .logo-box img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      /* Agar logo tidak gepeng */
+
+      /* Bikin logo jadi hitam putih biar rapi */
+      /* filter: grayscale(100%) opacity(0.7); */
+      transition: all 0.3s ease;
+
+      /* Hapus background putih bawaan jpg (opsional, mix-blend-mode membantu kalau background box agak abu) */
+      mix-blend-mode: multiply;
+    }
+
+    /* Style Hover: Logo jadi berwarna & Box glowing */
+    .logo-box:hover {
+      border-color: rgba(0, 102, 255, 0.25);
+      box-shadow: 0 8px 24px rgba(0, 102, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .logo-box:hover img {
+      filter: grayscale(0%) opacity(1);
+      /* Kembalikan warna asli */
+      transform: scale(1.1);
+      /* Zoom dikit */
+    }
+
+    /* Khusus untuk teks SMK yang belum ada logonya */
+    .logo-smk {
+      font-weight: 700;
+      color: #64748b;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .logo-smk:hover {
+      color: #0066ff;
+    }
   </style>
   <style>
     @view-transition {
@@ -4269,7 +4439,7 @@
     <div class="hero-container">
       <div class="hero-content">
         <div class="hero-tag" id="hero-tag">
-          AI × IoT Learning Platform by Ichibot
+          Platform Edukasi AI untuk Project IoT
         </div>
         <h1 class="hero-headline" id="hero-headline">Saatnya bikin AI benar-benar bekerja di perangkat IoT-mu.</h1>
         <p class="hero-subheadline" id="hero-subheadline">Ichibot membantu pelajar, pengajar, dan industri memahami
@@ -4407,233 +4577,174 @@
       <h2 class="trusted-headline" id="trusted-headline">Trusted By Leading Schools &amp; Companies</h2>
       <p class="trusted-subheadline" id="trusted-subheadline">Perusahaan, sekolah, dan kampus yang telah mempercayai
         Ichibot untuk pelatihan AI-IoT, robotics, dan automation.</p>
-      <div class="logos-wrapper"><!-- Row 1 - Companies (Slide Left) -->
+      <div class="logos-wrapper">
+
         <div class="logo-row logo-row-1">
           <div class="logo-item">
-            <div class="logo-box logo-pertamina">
-              Pertamina
+            <div class="logo-box">
+              <img src="https://logo.clearbit.com/pertamina.com" alt="Pertamina">
             </div>
           </div>
           <div class="logo-item">
-            <div class="logo-box logo-toyota">
-              Toyota
+            <div class="logo-box">
+              <img src="https://logo.clearbit.com/toyota.astra.co.id" alt="Toyota">
             </div>
           </div>
           <div class="logo-item">
-            <div class="logo-box logo-bca">
-              BCA
+            <div class="logo-box">
+              <img src="https://logo.clearbit.com/bca.co.id" alt="BCA">
             </div>
           </div>
           <div class="logo-item">
-            <div class="logo-box logo-kai">
-              KAI
+            <div class="logo-box">
+              <img src="https://logo.clearbit.com/kai.id" alt="KAI">
             </div>
           </div>
           <div class="logo-item">
-            <div class="logo-box logo-johnson">
-              Johnson Controls
+            <div class="logo-box">
+              <img src="https://logo.clearbit.com/johnsoncontrols.com" alt="Johnson Controls">
             </div>
           </div>
           <div class="logo-item">
-            <div class="logo-box logo-asperio">
-              Asperio
+            <div class="logo-box">
+              <span style="font-weight:bold; color:#555;">ASPERIO</span>
             </div>
           </div>
           <div class="logo-item">
-            <div class="logo-box logo-kuanta">
-              Kuanta
+            <div class="logo-box">
+              <img src="https://logo.clearbit.com/kuanta.id" alt="Kuanta"
+                onerror="this.style.display='none'; this.parentNode.innerText='KUANTA'">
             </div>
           </div>
+
           <div class="logo-item">
-            <div class="logo-box logo-docmedika">
-              Doc Medika
-            </div>
-          </div><!-- Duplicate for seamless loop -->
-          <div class="logo-item">
-            <div class="logo-box logo-pertamina">
-              Pertamina
-            </div>
+            <div class="logo-box"><img src="https://logo.clearbit.com/pertamina.com" alt="Pertamina"></div>
           </div>
           <div class="logo-item">
-            <div class="logo-box logo-toyota">
-              Toyota
-            </div>
+            <div class="logo-box"><img src="https://logo.clearbit.com/toyota.astra.co.id" alt="Toyota"></div>
           </div>
           <div class="logo-item">
-            <div class="logo-box logo-bca">
-              BCA
-            </div>
+            <div class="logo-box"><img src="https://logo.clearbit.com/bca.co.id" alt="BCA"></div>
           </div>
           <div class="logo-item">
-            <div class="logo-box logo-kai">
-              KAI
-            </div>
+            <div class="logo-box"><img src="https://logo.clearbit.com/kai.id" alt="KAI"></div>
           </div>
           <div class="logo-item">
-            <div class="logo-box logo-johnson">
-              Johnson Controls
-            </div>
+            <div class="logo-box"><img src="https://logo.clearbit.com/johnsoncontrols.com" alt="Johnson"></div>
           </div>
           <div class="logo-item">
-            <div class="logo-box logo-asperio">
-              Asperio
-            </div>
+            <div class="logo-box"><span style="font-weight:bold; color:#555;">ASPERIO</span></div>
           </div>
           <div class="logo-item">
-            <div class="logo-box logo-kuanta">
-              Kuanta
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-docmedika">
-              Doc Medika
-            </div>
-          </div>
-        </div><!-- Row 2 - Schools (Slide Right) -->
-        <div class="logo-row logo-row-2">
-          <div class="logo-item">
-            <div class="logo-box logo-smk2">
-              SMK N 2 Yogyakarta
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-telkom">
-              SMK Telkom Malang
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-muhammadiyah">
-              SMK Muhammadiyah
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-smkn4">
-              SMKN 4 Jakarta
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-poltek">
-              Politeknik Negeri
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-its">
-              ITS Surabaya
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-ugm">
-              UGM
-            </div>
-          </div><!-- Duplicate for seamless loop -->
-          <div class="logo-item">
-            <div class="logo-box logo-smk2">
-              SMK N 2 Yogyakarta
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-telkom">
-              SMK Telkom Malang
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-muhammadiyah">
-              SMK Muhammadiyah
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-smkn4">
-              SMKN 4 Jakarta
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-poltek">
-              Politeknik Negeri
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-its">
-              ITS Surabaya
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-ugm">
-              UGM
-            </div>
-          </div>
-        </div><!-- Row 3 - Mixed (Slide Left) -->
-        <div class="logo-row logo-row-3">
-          <div class="logo-item">
-            <div class="logo-box logo-schneider">
-              Schneider Electric
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-unair">
-              Unair
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-itb">
-              ITB
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-telkomsel">
-              Telkomsel
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-pln">
-              PLN
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-smkn1">
-              SMKN 1 Surabaya
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-ui">
-              Universitas Indonesia
-            </div>
-          </div><!-- Duplicate for seamless loop -->
-          <div class="logo-item">
-            <div class="logo-box logo-schneider">
-              Schneider Electric
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-unair">
-              Unair
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-itb">
-              ITB
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-telkomsel">
-              Telkomsel
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-pln">
-              PLN
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-smkn1">
-              SMKN 1 Surabaya
-            </div>
-          </div>
-          <div class="logo-item">
-            <div class="logo-box logo-ui">
-              Universitas Indonesia
-            </div>
+            <div class="logo-box"><span style="font-weight:bold; color:#555;">KUANTA</span></div>
           </div>
         </div>
+
+        <div class="logo-row logo-row-2">
+          <div class="logo-item">
+            <div class="logo-box">
+              <img src="https://logo.clearbit.com/ugm.ac.id" alt="UGM">
+            </div>
+          </div>
+          <div class="logo-item">
+            <div class="logo-box">
+              <img src="https://logo.clearbit.com/its.ac.id" alt="ITS">
+            </div>
+          </div>
+          <div class="logo-item">
+            <div class="logo-box">
+              <img src="https://logo.clearbit.com/pens.ac.id" alt="PENS">
+            </div>
+          </div>
+          <div class="logo-item">
+            <div class="logo-box">
+              <img src="https://logo.clearbit.com/itb.ac.id" alt="ITB">
+            </div>
+          </div>
+          <div class="logo-item">
+            <div class="logo-box">
+              <img src="https://logo.clearbit.com/ui.ac.id" alt="UI">
+            </div>
+          </div>
+          <div class="logo-item">
+            <div class="logo-box">
+              <img src="https://logo.clearbit.com/unair.ac.id" alt="Unair">
+            </div>
+          </div>
+
+          <div class="logo-item">
+            <div class="logo-box"><img src="https://logo.clearbit.com/ugm.ac.id" alt="UGM"></div>
+          </div>
+          <div class="logo-item">
+            <div class="logo-box"><img src="https://logo.clearbit.com/its.ac.id" alt="ITS"></div>
+          </div>
+          <div class="logo-item">
+            <div class="logo-box"><img src="https://logo.clearbit.com/pens.ac.id" alt="PENS"></div>
+          </div>
+          <div class="logo-item">
+            <div class="logo-box"><img src="https://logo.clearbit.com/itb.ac.id" alt="ITB"></div>
+          </div>
+          <div class="logo-item">
+            <div class="logo-box"><img src="https://logo.clearbit.com/ui.ac.id" alt="UI"></div>
+          </div>
+          <div class="logo-item">
+            <div class="logo-box"><img src="https://logo.clearbit.com/unair.ac.id" alt="Unair"></div>
+          </div>
+        </div>
+
+        <div class="logo-row logo-row-3">
+          <div class="logo-item">
+            <div class="logo-box">
+              <img src="https://logo.clearbit.com/se.com" alt="Schneider">
+            </div>
+          </div>
+          <div class="logo-item">
+            <div class="logo-box">
+              <img src="https://logo.clearbit.com/telkomsel.com" alt="Telkomsel">
+            </div>
+          </div>
+          <div class="logo-item">
+            <div class="logo-box">
+              <img src="https://logo.clearbit.com/pln.co.id" alt="PLN">
+            </div>
+          </div>
+
+          <div class="logo-item">
+            <div class="logo-box logo-smk">
+              SMK N 2 YK
+            </div>
+          </div>
+          <div class="logo-item">
+            <div class="logo-box logo-smk">
+              SMK Telkom
+            </div>
+          </div>
+          <div class="logo-item">
+            <div class="logo-box logo-smk">
+              SMKN 4 JKT
+            </div>
+          </div>
+
+          <div class="logo-item">
+            <div class="logo-box"><img src="https://logo.clearbit.com/se.com" alt="Schneider"></div>
+          </div>
+          <div class="logo-item">
+            <div class="logo-box"><img src="https://logo.clearbit.com/telkomsel.com" alt="Telkomsel"></div>
+          </div>
+          <div class="logo-item">
+            <div class="logo-box"><img src="https://logo.clearbit.com/pln.co.id" alt="PLN"></div>
+          </div>
+          <div class="logo-item">
+            <div class="logo-box logo-smk">SMK N 2 YK</div>
+          </div>
+          <div class="logo-item">
+            <div class="logo-box logo-smk">SMK Telkom</div>
+          </div>
+          <div class="logo-item">
+            <div class="logo-box logo-smk">SMKN 4 JKT</div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section><!-- Our Programs Section -->
@@ -4642,36 +4753,74 @@
       <h2 class="programs-headline" id="programs-headline">Our Programs</h2>
       <p class="programs-subheadline" id="programs-subheadline">Pelatihan intensif AI-IoT untuk industri, pendidik, dan
         developer profesional.</p>
-      <div class="programs-list"><!-- Program Banners -->
-        <div class="programs-banners"><!-- Program Banner 1: Industrial -->
+
+      <div class="programs-list">
+        <div class="programs-banners">
+
           <div class="program-banner">
-            <div class="program-content"><span class="program-badge">🏭 Untuk Industri</span>
-              <h3 class="program-title" id="program-title-1">Industrial AI-IoT Bootcamp + Coaching</h3>
-              <p class="program-description" id="program-desc-1">Pelatihan IoT industri dan pendampingan PoC selama 4-12
-                minggu.</p>
-            </div><button class="program-cta">Lihat Detail</button>
-          </div><!-- Program Banner 2: Training of Trainer -->
-          <div class="program-banner">
-            <div class="program-content"><span class="program-badge">👨🏫 Untuk Guru &amp; Dosen</span>
-              <h3 class="program-title" id="program-title-2">AI-IoT Training of Trainer Bootcamp</h3>
-              <p class="program-description" id="program-desc-2">Kurikulum siap ajar dan praktikum untuk guru &amp;
-                dosen.</p>
-            </div><button class="program-cta">Lihat Detail</button>
-          </div><!-- Program Banner 3: Developer -->
-          <div class="program-banner">
-            <div class="program-content"><span class="program-badge">💻 Untuk Developer</span>
-              <h3 class="program-title" id="program-title-3">AI-IoT Developer Bootcamp</h3>
-              <p class="program-description" id="program-desc-3">Program 4–8 minggu untuk membangun project AI-IoT
-                end-to-end.</p>
-            </div><button class="program-cta">Lihat Detail</button>
-          </div><!-- Program Banner 4: Customized -->
-          <div class="program-banner">
-            <div class="program-content"><span class="program-badge">⚙️ Custom untuk Anda</span>
-              <h3 class="program-title" id="program-title-4">Customized Bootcamp</h3>
-              <p class="program-description" id="program-desc-4">Program yang dibuat sesuai kebutuhan sekolah, kampus,
-                industri, atau komunitas.</p>
-            </div><button class="program-cta">Lihat Detail</button>
+            <div class="program-image-container">
+              <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=800&fit=crop"
+                alt="Industrial IoT" class="program-image">
+            </div>
+            <div class="program-info-wrapper">
+              <div class="program-content">
+                <span class="program-badge">🏭 Untuk Industri</span>
+                <h3 class="program-title" id="program-title-1">Industrial AI-IoT Bootcamp + Coaching</h3>
+                <p class="program-description" id="program-desc-1">Pelatihan IoT industri dan pendampingan PoC selama
+                  4-12 minggu.</p>
+              </div>
+              <button class="program-cta">Lihat Detail</button>
+            </div>
           </div>
+
+          <div class="program-banner">
+            <div class="program-image-container">
+              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=800&fit=crop"
+                alt="Training of Trainer" class="program-image">
+            </div>
+            <div class="program-info-wrapper">
+              <div class="program-content">
+                <span class="program-badge">👨🏫 Untuk Guru &amp; Dosen</span>
+                <h3 class="program-title" id="program-title-2">AI-IoT Training of Trainer Bootcamp</h3>
+                <p class="program-description" id="program-desc-2">Kurikulum siap ajar dan praktikum untuk guru &amp;
+                  dosen.</p>
+              </div>
+              <button class="program-cta">Lihat Detail</button>
+            </div>
+          </div>
+
+          <div class="program-banner">
+            <div class="program-image-container">
+              <img src="https://images.unsplash.com/photo-1605379399642-870262d3d051?w=600&h=800&fit=crop"
+                alt="Developer Coding" class="program-image">
+            </div>
+            <div class="program-info-wrapper">
+              <div class="program-content">
+                <span class="program-badge">💻 Untuk Developer</span>
+                <h3 class="program-title" id="program-title-3">AI-IoT Developer Bootcamp</h3>
+                <p class="program-description" id="program-desc-3">Program 4–8 minggu untuk membangun project AI-IoT
+                  end-to-end.</p>
+              </div>
+              <button class="program-cta">Lihat Detail</button>
+            </div>
+          </div>
+
+          <div class="program-banner">
+            <div class="program-image-container">
+              <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&h=800&fit=crop"
+                alt="Custom Collaboration" class="program-image">
+            </div>
+            <div class="program-info-wrapper">
+              <div class="program-content">
+                <span class="program-badge">⚙️ Custom untuk Anda</span>
+                <h3 class="program-title" id="program-title-4">Customized Bootcamp</h3>
+                <p class="program-description" id="program-desc-4">Program yang dibuat sesuai kebutuhan sekolah,
+                  kampus, industri, atau komunitas.</p>
+              </div>
+              <button class="program-cta">Lihat Detail</button>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -4760,7 +4909,7 @@
       <h2 class="mini-courses-headline" id="mini-courses-headline">Mini Courses</h2>
       <p class="mini-courses-subheadline" id="mini-courses-subheadline">Bangun skill AI-IoT dengan kursus singkat
         berdurasi 30–90 menit, lengkap dengan video, file project, dan panduan praktikal.</p>
-      <!-- Free Course Highlight -->
+
       <div class="free-course-highlight">
         <div class="free-course-content"><span class="free-badge">FREE COURSE</span>
           <h3 class="free-course-title" id="free-course-title">Intro to IoT: Hubungkan Perangkatmu ke Internet dalam 30
@@ -4787,95 +4936,108 @@
             </div>
           </div>
         </div>
-      </div><!-- Carousel -->
+      </div>
+
       <div class="courses-carousel-wrapper">
         <h3 class="carousel-section-title">Favourite Mini Courses</h3>
-        <div class="carousel-nav"><button class="carousel-btn carousel-prev" id="carousel-prev"
-            aria-label="Previous">‹</button> <button class="carousel-btn carousel-next" id="carousel-next"
-            aria-label="Next">›</button>
+
+        <div class="carousel-nav">
+          <button class="carousel-btn carousel-prev" id="carousel-prev" aria-label="Previous">‹</button>
+          <button class="carousel-btn carousel-next" id="carousel-next" aria-label="Next">›</button>
         </div>
-        <div class="courses-carousel" id="courses-carousel"><!-- Slide 1 -->
+
+        <div class="courses-carousel" id="courses-carousel">
+
           <div class="course-card">
-            <div class="course-image"><img
-                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&amp;h=400&amp;fit=crop"
+            <div class="course-image">
+              <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop"
                 alt="Node-RED Flow" class="course-img"
                 onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)';">
-              <span class="course-badge">FAVOURITE</span> <span class="lifetime-badge">⏳ Lifetime Access</span> <span
-                class="course-price">Rp 49.000</span>
+              <span class="course-badge">FAVOURITE</span>
+              <span class="lifetime-badge">⏳ Lifetime Access</span>
             </div>
             <div class="course-info">
               <h4 class="course-title">Node-RED for Beginners</h4>
-              <p class="course-subtitle">Automasi IoT tanpa coding panjang.</p><button class="course-cta">Lihat
-                Course</button>
+              <p class="course-subtitle">Automasi IoT tanpa coding panjang.</p>
+              <div class="course-price-tag">Rp 49.000</div>
+              <button class="course-cta">Lihat Course</button>
             </div>
-          </div><!-- Slide 2 -->
+          </div>
+
           <div class="course-card">
-            <div class="course-image"><img
-                src="https://images.unsplash.com/photo-1555255707-c07966088b7b?w=600&amp;h=400&amp;fit=crop"
+            <div class="course-image">
+              <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?w=600&amp;h=400&amp;fit=crop"
                 alt="AI Vision" class="course-img"
                 onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)';">
-              <span class="course-badge">FAVOURITE</span> <span class="lifetime-badge">⏳ Lifetime Access</span> <span
-                class="course-price">Rp 59.000</span>
+              <span class="course-badge">FAVOURITE</span>
+              <span class="lifetime-badge">⏳ Lifetime Access</span>
             </div>
             <div class="course-info">
               <h4 class="course-title">AI Vision Basics</h4>
-              <p class="course-subtitle">Deteksi objek sederhana dalam 1 jam.</p><button class="course-cta">Lihat
-                Course</button>
+              <p class="course-subtitle">Deteksi objek sederhana dalam 1 jam.</p>
+              <div class="course-price-tag">Rp 59.000</div>
+              <button class="course-cta">Lihat Course</button>
             </div>
-          </div><!-- Slide 3 -->
+          </div>
+
           <div class="course-card">
-            <div class="course-image"><img
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&amp;h=400&amp;fit=crop"
+            <div class="course-image">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&amp;h=400&amp;fit=crop"
                 alt="Dashboard" class="course-img"
                 onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)';">
-              <span class="course-badge">FAVOURITE</span> <span class="lifetime-badge">⏳ Lifetime Access</span> <span
-                class="course-price">Rp 49.000</span>
+              <span class="course-badge">FAVOURITE</span>
+              <span class="lifetime-badge">⏳ Lifetime Access</span>
             </div>
             <div class="course-info">
               <h4 class="course-title">ThingsBoard Mini Dashboard</h4>
-              <p class="course-subtitle">Bangun dashboard IoT profesional.</p><button class="course-cta">Lihat
-                Course</button>
+              <p class="course-subtitle">Bangun dashboard IoT profesional.</p>
+              <div class="course-price-tag">Rp 49.000</div>
+              <button class="course-cta">Lihat Course</button>
             </div>
-          </div><!-- Slide 4 -->
+          </div>
+
           <div class="course-card">
-            <div class="course-image"><img
-                src="https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=600&amp;h=400&amp;fit=crop"
+            <div class="course-image">
+              <img src="https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=600&amp;h=400&amp;fit=crop"
                 alt="Automation" class="course-img"
                 onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)';">
-              <span class="course-badge">FAVOURITE</span> <span class="lifetime-badge">⏳ Lifetime Access</span> <span
-                class="course-price">Rp 59.000</span>
+              <span class="course-badge">FAVOURITE</span>
+              <span class="lifetime-badge">⏳ Lifetime Access</span>
             </div>
             <div class="course-info">
               <h4 class="course-title">n8n Automation for IoT</h4>
-              <p class="course-subtitle">Buat notifikasi otomatis dari data IoT.</p><button class="course-cta">Lihat
-                Course</button>
+              <p class="course-subtitle">Buat notifikasi otomatis dari data IoT.</p>
+              <div class="course-price-tag">Rp 59.000</div>
+              <button class="course-cta">Lihat Course</button>
             </div>
-          </div><!-- Slide 5 -->
+          </div>
+
           <div class="course-card">
-            <div class="course-image"><img
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&amp;h=400&amp;fit=crop"
+            <div class="course-image">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&amp;h=400&amp;fit=crop"
                 alt="Anomaly Detection" class="course-img"
                 onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)';">
-              <span class="course-badge">FAVOURITE</span> <span class="lifetime-badge">⏳ Lifetime Access</span> <span
-                class="course-price">Rp 79.000</span>
+              <span class="course-badge">FAVOURITE</span>
+              <span class="lifetime-badge">⏳ Lifetime Access</span>
             </div>
             <div class="course-info">
               <h4 class="course-title">AI Anomaly Detection Basics</h4>
-              <p class="course-subtitle">Kenali pola anomali dari data sensor IoT.</p><button class="course-cta">Lihat
-                Course</button>
+              <p class="course-subtitle">Kenali pola anomali dari data sensor IoT.</p>
+              <div class="course-price-tag">Rp 79.000</div>
+              <button class="course-cta">Lihat Course</button>
             </div>
-          </div><!-- Slide 6 - CTA -->
+          </div>
+
           <div class="course-card course-card-cta">
             <div class="cta-blur-bg"></div>
             <div class="cta-content">
-              <div class="cta-icon">
-                🚀
-              </div>
+              <div class="cta-icon">🚀</div>
               <h4 class="cta-title">Lihat Mini Courses Lainnya</h4>
-              <p class="cta-subtitle">Jelajahi koleksi lengkap kursus singkat AI-IoT.</p><button
-                class="cta-button">Lihat Semua Mini Courses</button>
+              <p class="cta-subtitle">Jelajahi koleksi lengkap kursus singkat AI-IoT.</p>
+              <button class="cta-button">Lihat Semua Mini Courses</button>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -5036,7 +5198,7 @@
     const defaultConfig = {
       brand_name: "ICHIBOT",
       ecosystem_label: "Ecosystem:",
-      hero_tag: "AI × IoT Learning Platform by Ichibot",
+      hero_tag: "Platform Edukasi AI untuk Project IoT",
       hero_headline: "Saatnya bikin AI benar-benar bekerja di perangkat IoT-mu.",
       hero_subheadline: "Ichibot membantu pelajar, pengajar, dan industri memahami serta mengimplementasikan AI-IoT lewat program intensif, coaching, dan learning kit yang praktikal.",
       primary_cta: "Lihat Program Bootcamp AI-IoT",
