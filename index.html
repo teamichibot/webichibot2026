@@ -491,12 +491,15 @@
       z-index: 1000;
     }
 
+    /* Agar dropdown lebar tidak nabrak dan tidak ke-clip */
     .dropdown-menu-wide {
-      min-width: 900px;
+      width: max-content;
+      max-width: 95vw;
       left: 50%;
-      transform: translateX(-50%) translateY(-10px);
-      padding: 24px;
+      transform: translateX(-50%);
+      z-index: 9999;
     }
+
 
     @media (max-width: 1024px) {
       .dropdown-columns {
@@ -3983,6 +3986,17 @@
         padding: 32px 24px;
       }
     }
+    /* === FIX UTAMA MINI COURSE KEPOCONG / TERPOTONG === */
+    .header,
+    .header-left,
+    .nav,
+    .nav ul,
+    .nav-menu,
+    .nav-item {
+      overflow: visible !important;
+      position: static !important;
+    }
+
   </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
@@ -4092,7 +4106,7 @@
    <div class="hero-container">
     <div class="hero-content">
      <div class="hero-tag" id="hero-tag">
-      AI × IoT Learning Platform by Ichibot
+      Platform Edukasi AI untuk Project IoT
      </div>
      <h1 class="hero-headline" id="hero-headline">Saatnya bikin AI benar-benar bekerja di perangkat IoT-mu.</h1>
      <p class="hero-subheadline" id="hero-subheadline">Ichibot membantu pelajar, pengajar, dan industri memahami serta mengimplementasikan AI-IoT lewat program intensif, coaching, dan learning kit yang praktikal.</p>
@@ -4776,7 +4790,7 @@
     const defaultConfig = {
       brand_name: "ICHIBOT",
       ecosystem_label: "Ecosystem:",
-      hero_tag: "AI × IoT Learning Platform by Ichibot",
+      hero_tag: "Platform Edukasi AI untuk Project IoT",
       hero_headline: "Saatnya bikin AI benar-benar bekerja di perangkat IoT-mu.",
       hero_subheadline: "Ichibot membantu pelajar, pengajar, dan industri memahami serta mengimplementasikan AI-IoT lewat program intensif, coaching, dan learning kit yang praktikal.",
       primary_cta: "Lihat Program Bootcamp AI-IoT",
