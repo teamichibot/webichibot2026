@@ -493,24 +493,34 @@
     }
 
     .dropdown-menu-wide {
-      position: absolute;
-      top: 100%;
-
-      /* PASTI TIDAK TUMPAH */
+      position: fixed;
+      /* Ubah dari absolute ke fixed */
+      top: 75px;
+      /* Sesuaikan dengan tinggi header kamu (75px) */
       left: 0;
-      right: 0;
-
-      /* biar menu tetap responsif */
-      width: 100vw;
+      width: 100%;
+      /* Gunakan 100% agar pas dengan lebar layar */
       max-width: 100vw;
 
+      /* Style yang sudah ada biarkan saja */
       padding: 24px;
       box-sizing: border-box;
-
       opacity: 0;
       visibility: hidden;
       transition: all 0.3s ease;
       z-index: 9999;
+      background: #ffffff;
+      /* Pastikan ada background color */
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      /* Tambahan shadow biar cantik */
+    }
+
+    /* Pastikan style hover tetap jalan */
+    .nav-item:hover .dropdown-menu-wide {
+      opacity: 1;
+      visibility: visible;
+      /* Hapus transform translateY jika menggunakan fixed position agar tidak lompat */
+      transform: none;
     }
 
 
@@ -533,11 +543,11 @@
       overflow: visible !important;
     }
 
-    .nav-item:hover .dropdown-menu-wide {
+    /* .nav-item:hover .dropdown-menu-wide {
       opacity: 1;
       visibility: visible;
       transform: translateY(0);
-    }
+    } */
 
 
 
